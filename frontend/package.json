@@ -1,0 +1,29 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "codegen": "graphql-codegen --config codegen.ts"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^6.2.2",
+    "@astrojs/prefetch": "^0.2.1",
+    "@astrojs/svelte": "^2.1.0",
+    "astro": "^2.1.4",
+    "graphql": "^16.6.0",
+    "svelte": "^3.54.0",
+    "svelte-material-ui": "^7.0.0-beta.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "3.3.0",
+    "@graphql-codegen/client-preset": "3.0.0",
+    "@graphql-codegen/introspection": "3.0.1",
+    "@smui/button": "^7.0.0-beta.1",
+    "@smui/card": "^7.0.0-beta.1"
+  }
+}

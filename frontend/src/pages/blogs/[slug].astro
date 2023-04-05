@@ -1,0 +1,19 @@
+---
+import { GraphQLClient } from "graphql-request";
+import { AaaDocument, BbbDocument } from "../../gql/graphql";
+const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`);
+
+export async function getStaticPaths() {
+  const postsData = await client.request(AaaDocument);
+  return postsData.posts?.data.map((post) => ({
+    params: { slug: post.attributes?.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const postItem =
+  (await client.request(BbbDocument, { slug })).posts?.data ?? [];
+---
+
+<h1>{postItem[0]?.attributes?.title}</h1>
+<p>{JSON.stringify(postItem[0])}</p>
