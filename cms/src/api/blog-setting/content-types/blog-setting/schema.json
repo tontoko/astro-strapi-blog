@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "blog_settings",
+  "info": {
+    "singularName": "blog-setting",
+    "pluralName": "blog-settings",
+    "displayName": "blogSettings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

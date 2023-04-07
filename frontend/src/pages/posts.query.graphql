@@ -1,0 +1,11 @@
+query queryPosts {
+  posts {
+    data {
+      attributes {
+        title
+        content
+        slug
+      }
+    }
+  }
+}

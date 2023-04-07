@@ -1,19 +1,35 @@
 ---
 import { GraphQLClient } from "graphql-request";
-import { AaaDocument, BbbDocument } from "../../gql/graphql";
-const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`);
+import Layout from "../../layouts/Layout.astro";
+import {
+  QueryPostsDocument,
+  QueryBlogSettingsDocument,
+} from "../../gql/graphql";
+import { marked } from "marked";
+import AppHeader from "../../components/AppHeader.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
-export async function getStaticPaths() {
-  const postsData = await client.request(AaaDocument);
-  return postsData.posts?.data.map((post) => ({
+export const getStaticPaths = (async () => {
+  const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`);
+  const postsData =
+    (await client.request(QueryPostsDocument)).posts?.data ?? [];
+  return postsData.map((post) => ({
     params: { slug: post.attributes?.slug },
+    props: { postItem: post?.attributes },
   }));
-}
+}) satisfies GetStaticPaths;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { slug } = Astro.params;
-const postItem =
-  (await client.request(BbbDocument, { slug })).posts?.data ?? [];
+const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`);
+const { postItem } = Astro.props;
+const blogTitle = (await client.request(QueryBlogSettingsDocument)).blogSetting
+  ?.data?.attributes?.title;
 ---
 
-<h1>{postItem[0]?.attributes?.title}</h1>
-<p>{JSON.stringify(postItem[0])}</p>
+<Layout title={blogTitle ?? undefined}>
+  <AppHeader blogTitle={blogTitle ?? undefined} />
+  <main class="prose mx-10 md:mx-20 my-10 dark:prose-invert break-words">
+    <h1>{postItem?.title}</h1>
+    <article set:html={marked.parse(postItem?.content ?? "")} />
+  </main>
+</Layout>

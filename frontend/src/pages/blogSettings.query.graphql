@@ -1,0 +1,9 @@
+query queryBlogSettings {
+  blogSetting {
+    data {
+      attributes {
+        title
+      }
+    }
+  }
+}

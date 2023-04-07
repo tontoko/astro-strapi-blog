@@ -1,0 +1,16 @@
+---
+interface Props {
+  blogTitle?: string;
+}
+const { blogTitle } = Astro.props;
+---
+
+<header
+  class="h-16 w-full bg-emerald-600 text-white tracking-wider text-xl font-light flex items-center"
+>
+  <a href="/">
+    <selection class="ml-8">
+      <span>{blogTitle}</span>
+    </selection>
+  </a>
+</header>
