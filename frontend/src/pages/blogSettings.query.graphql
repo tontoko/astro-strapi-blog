@@ -3,6 +3,9 @@ query queryBlogSettings {
     data {
       attributes {
         title
+        seo {
+          ...Seo
+        }
       }
     }
   }

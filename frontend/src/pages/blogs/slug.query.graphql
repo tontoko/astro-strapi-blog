@@ -5,6 +5,9 @@ query queryPostBySlug($slug: String) {
         title
         content
         slug
+        seo {
+          ...Seo
+        }
       }
     }
   }

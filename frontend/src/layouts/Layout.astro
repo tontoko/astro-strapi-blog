@@ -1,29 +1,14 @@
 ---
 import "highlight.js/styles/github-dark-dimmed.css"
+import type { ComponentSharedSeo } from "../gql/graphql"
 
 export interface Props {
   title?: string
-  seo?: {
-    metaDescription?: string
-    metaImage?: {
-      data: {
-        attributes: {
-          url: string
-        }
-      }
-    }
-    metaTwitterImage?: {
-      data: {
-        attributes: {
-          url: string
-        }
-      }
-    }
-  }
+  seo?: Partial<ComponentSharedSeo>
 }
 
 const { title, seo } = Astro.props
-const { metaDescription, metaImage, metaTwitterImage } = seo ?? {}
+const { metaDescription, metaImage } = seo ?? {}
 ---
 
 <!DOCTYPE html>
@@ -34,21 +19,12 @@ const { metaDescription, metaImage, metaTwitterImage } = seo ?? {}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    {
-      seo && (
-        <>
-          <meta name="description" content={metaDescription} />
-          <meta property="og:title" content={title} />
-          <meta property="og:type" content="article" />
-          <meta property="og:image" content={metaImage?.data.attributes.url} />
-          <meta
-            property="twitter:image"
-            content={metaTwitterImage?.data.attributes.url}
-          />
-          <meta property="twitter:card" content="summary_large_image" />
-        </>
-      )
-    }
+    <meta name="description" content={metaDescription} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content={metaImage?.data?.attributes?.url} />
+    <meta property="twitter:image" content={metaImage?.data?.attributes?.url} />
+    <meta property="twitter:card" content="summary_large_image" />
   </head>
   <body class="bg-gray-50 h-max dark:bg-slate-800">
     <slot />

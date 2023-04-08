@@ -2,9 +2,10 @@
 import { GraphQLClient } from "graphql-request"
 import Layout from "../layouts/Layout.astro"
 import { QueryPostsDocument, QueryBlogSettingsDocument } from "../gql/graphql"
-import { marked } from "marked"
 import AppHeader from "../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
+import { parseWithCustomRenderer } from "../libs/marked"
+import type { ComponentSharedSeo } from "../gql/graphql"
 
 export const getStaticPaths = (async ({ paginate }) => {
   const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
@@ -17,12 +18,30 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
 const { page } = Astro.props
 const { data, currentPage, lastPage } = page
-const blogTitle = (await client.request(QueryBlogSettingsDocument)).blogSetting
-  ?.data?.attributes?.title
+const { title, seo } =
+  (await client.request(QueryBlogSettingsDocument)).blogSetting?.data
+    ?.attributes ?? {}
+
+const articleContents = Object.fromEntries(
+  await Promise.all(
+    data.map(async (post) => [
+      post?.attributes?.slug,
+      (
+        await parseWithCustomRenderer({
+          content: post?.attributes?.content ?? "",
+          imageSize: "sm",
+        })
+      ).parsedMarkdown,
+    ])
+  )
+)
 ---
 
-<Layout title={blogTitle ?? undefined}>
-  <AppHeader blogTitle={blogTitle ?? undefined} />
+<Layout
+  title={title ?? undefined}
+  seo={(seo as Partial<ComponentSharedSeo>) ?? undefined}
+>
+  <AppHeader blogTitle={title ?? undefined} />
   <main class="prose mx-10 md:mx-20 my-10 dark:prose-invert divide-y">
     {
       data.map((post) => {
@@ -33,7 +52,7 @@ const blogTitle = (await client.request(QueryBlogSettingsDocument)).blogSetting
                 <h3>{post?.attributes?.title}</h3>
                 <div
                   class="line-clamp-3"
-                  set:html={marked(post?.attributes?.content ?? "")}
+                  set:html={articleContents[post?.attributes?.slug]}
                 />
               </article>
             </a>

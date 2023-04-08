@@ -5,11 +5,10 @@ import {
   QueryPostsDocument,
   QueryBlogSettingsDocument,
 } from "../../gql/graphql"
-import { marked } from "marked"
 import AppHeader from "../../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
-import highlight from "highlight.js"
-import { getImage } from "@astrojs/image"
+import { parseWithCustomRenderer } from "../../libs/marked"
+import type { ComponentSharedSeo } from "../../gql/graphql"
 
 export const getStaticPaths = (async () => {
   const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
@@ -23,55 +22,22 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
 const { postItem } = Astro.props
-const blogTitle = (await client.request(QueryBlogSettingsDocument)).blogSetting
-  ?.data?.attributes?.title
+const { title, seo: blogSeo } =
+  (await client.request(QueryBlogSettingsDocument)).blogSetting?.data
+    ?.attributes ?? {}
 
-const toc: {
-  level: number
-  slug: string
-  title: string
-}[] = []
-
-const renderer = new marked.Renderer({ async: true })
-renderer.heading = (text, level) => {
-  const slug = encodeURI(text.toLowerCase())
-  toc.push({
-    level: level,
-    slug: slug,
-    title: text,
-  })
-  return "<h" + level + ' id="' + slug + '">' + text + "</h" + level + ">\n"
-}
-renderer.image = (href, title, text) => {
-  return `<img loading="lazy" alt="${text}" title="${title}" src="${href}" width="655" height="368.4375">`
-}
-marked.setOptions({
-  renderer,
-  highlight: (code) => {
-    return highlight.highlightAuto(code).value
-  },
-})
-const walkTokens = async (token: marked.Token) => {
-  if (token.type === "image") {
-    const { href, text } = token
-    const image = await getImage({
-      width: 1310,
-      height: 736,
-      format: "webp",
-      src: `http://127.0.0.1:1337${href}`,
-      alt: text,
-    })
-    if (image.src) token.href = image.src
-  }
-}
-marked.use({ walkTokens, async: true })
-const parsedMarkdown = await marked.parse(postItem?.content ?? "", {
-  async: true,
+const { parsedMarkdown, toc } = await parseWithCustomRenderer({
+  content: postItem?.content ?? "",
+  imageSize: "xl",
 })
 ---
 
-<Layout title={blogTitle ?? undefined}>
-  <AppHeader blogTitle={blogTitle ?? undefined} />
+<Layout
+  title={title ?? undefined}
+  seo={({ ...blogSeo, ...postItem?.seo } as Partial<ComponentSharedSeo>) ??
+    undefined}
+>
+  <AppHeader blogTitle={title ?? undefined} />
   <main class="prose mx-10 md:mx-20 mt-10 mb-40 dark:prose-invert break-words">
     <h1>{postItem?.title}</h1>
     <nav>
