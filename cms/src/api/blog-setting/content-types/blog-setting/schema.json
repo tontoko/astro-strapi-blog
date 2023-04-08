@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog-setting",
     "pluralName": "blog-settings",
-    "displayName": "blogSettings"
+    "displayName": "blogSettings",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,11 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

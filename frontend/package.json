@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^6.2.2",
+    "@astrojs/image": "^0.16.5",
     "@astrojs/prefetch": "^0.2.1",
     "@astrojs/svelte": "^2.1.0",
     "@astrojs/tailwind": "^3.1.1",
-    "astro": "^2.2.1",
+    "astro": "^2.2.0",
+    "astro-compress": "^1.1.35",
     "graphql": "^16.6.0",
     "highlight.js": "^11.7.0",
     "marked": "^4.3.0",

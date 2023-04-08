@@ -9,30 +9,7 @@ import { marked } from "marked"
 import AppHeader from "../../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import highlight from "highlight.js"
-
-const toc: {
-  level: number
-  slug: string
-  title: string
-}[] = []
-
-const renderer = new marked.Renderer()
-renderer.heading = (text, level) => {
-  const slug = encodeURI(text.toLowerCase())
-  toc.push({
-    level: level,
-    slug: slug,
-    title: text,
-  })
-  return "<h" + level + ' id="' + slug + '">' + text + "</h" + level + ">\n"
-}
-
-marked.setOptions({
-  renderer,
-  highlight: (code) => {
-    return highlight.highlightAuto(code).value
-  },
-})
+import { getImage } from "@astrojs/image"
 
 export const getStaticPaths = (async () => {
   const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
@@ -49,7 +26,46 @@ const { postItem } = Astro.props
 const blogTitle = (await client.request(QueryBlogSettingsDocument)).blogSetting
   ?.data?.attributes?.title
 
-const parsedMarkdown = marked.parse(postItem?.content ?? "")
+const toc: {
+  level: number
+  slug: string
+  title: string
+}[] = []
+
+const renderer = new marked.Renderer({ async: true })
+renderer.heading = (text, level) => {
+  const slug = encodeURI(text.toLowerCase())
+  toc.push({
+    level: level,
+    slug: slug,
+    title: text,
+  })
+  return "<h" + level + ' id="' + slug + '">' + text + "</h" + level + ">\n"
+}
+renderer.image = (href, title, text) => {
+  return `<img loading="lazy" alt="${text}" title="${title}" src="${href}" width="655" height="368.4375">`
+}
+marked.setOptions({
+  renderer,
+  highlight: (code) => {
+    return highlight.highlightAuto(code).value
+  },
+})
+const walkTokens = async (token: marked.Token) => {
+  if (token.type === "image") {
+    const { href, text } = token
+    const image = await getImage({
+      width: 655,
+      height: 368.4375,
+      format: "webp",
+      src: `http://127.0.0.1:1337${href}`,
+      alt: text,
+    })
+    if (image.src) token.href = image.src
+  }
+}
+marked.use({ walkTokens, async: true })
+const parsedMarkdown = await marked.parse(postItem?.content ?? "")
 ---
 
 <Layout title={blogTitle ?? undefined}>
