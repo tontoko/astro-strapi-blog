@@ -55,8 +55,8 @@ const walkTokens = async (token: marked.Token) => {
   if (token.type === "image") {
     const { href, text } = token
     const image = await getImage({
-      width: 655,
-      height: 368.4375,
+      width: 1310,
+      height: 736,
       format: "webp",
       src: `http://127.0.0.1:1337${href}`,
       alt: text,
