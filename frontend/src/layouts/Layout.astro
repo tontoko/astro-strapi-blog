@@ -1,4 +1,6 @@
 ---
+import "highlight.js/styles/github-dark-dimmed.css"
+
 export interface Props {
   title?: string
 }
@@ -7,7 +9,7 @@ const { title } = Astro.props
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="bg-gray-50 h-full dark:bg-slate-800">
+<html lang="en" class="bg-gray-50 h-max dark:bg-slate-800">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -15,7 +17,7 @@ const { title } = Astro.props
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-50 h-full dark:bg-slate-800">
+  <body class="bg-gray-50 h-max dark:bg-slate-800">
     <slot />
   </body>
 </html>
