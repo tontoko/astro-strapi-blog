@@ -65,7 +65,9 @@ const walkTokens = async (token: marked.Token) => {
   }
 }
 marked.use({ walkTokens, async: true })
-const parsedMarkdown = await marked.parse(postItem?.content ?? "")
+const parsedMarkdown = await marked.parse(postItem?.content ?? "", {
+  async: true,
+})
 ---
 
 <Layout title={blogTitle ?? undefined}>
