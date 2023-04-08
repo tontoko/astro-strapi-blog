@@ -8,6 +8,31 @@ import {
 import { marked } from "marked"
 import AppHeader from "../../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
+import highlight from "highlight.js"
+
+const toc: {
+  level: number
+  slug: string
+  title: string
+}[] = []
+
+const renderer = new marked.Renderer()
+renderer.heading = (text, level) => {
+  const slug = encodeURI(text.toLowerCase())
+  toc.push({
+    level: level,
+    slug: slug,
+    title: text,
+  })
+  return "<h" + level + ' id="' + slug + '">' + text + "</h" + level + ">\n"
+}
+
+marked.setOptions({
+  renderer,
+  highlight: (code) => {
+    return highlight.highlightAuto(code).value
+  },
+})
 
 export const getStaticPaths = (async () => {
   const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
@@ -23,12 +48,28 @@ const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
 const { postItem } = Astro.props
 const blogTitle = (await client.request(QueryBlogSettingsDocument)).blogSetting
   ?.data?.attributes?.title
+
+const parsedMarkdown = marked.parse(postItem?.content ?? "")
 ---
 
 <Layout title={blogTitle ?? undefined}>
   <AppHeader blogTitle={blogTitle ?? undefined} />
-  <main class="prose mx-10 md:mx-20 my-10 dark:prose-invert break-words">
+  <main class="prose mx-10 md:mx-20 mt-10 mb-40 dark:prose-invert break-words">
     <h1>{postItem?.title}</h1>
-    <article set:html={marked.parse(postItem?.content ?? "")} />
+    <nav>
+      <hr />
+      <p>目次</p>
+      <div class="ml-2">
+        {
+          toc.map(({ level, slug, title }) => (
+            <div style={`margin-left: ${(level - 1) * 16}px;`}>
+              <a href={"#" + slug}>{title}</a>
+            </div>
+          ))
+        }
+      </div>
+    </nav>
+    <hr />
+    <article set:html={parsedMarkdown} />
   </main>
 </Layout>
