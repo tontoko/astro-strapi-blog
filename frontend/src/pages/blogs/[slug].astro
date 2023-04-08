@@ -1,29 +1,28 @@
 ---
-import { GraphQLClient } from "graphql-request";
-import Layout from "../../layouts/Layout.astro";
+import { GraphQLClient } from "graphql-request"
+import Layout from "../../layouts/Layout.astro"
 import {
   QueryPostsDocument,
   QueryBlogSettingsDocument,
-} from "../../gql/graphql";
-import { marked } from "marked";
-import AppHeader from "../../components/AppHeader.astro";
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+} from "../../gql/graphql"
+import { marked } from "marked"
+import AppHeader from "../../components/AppHeader.astro"
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 
 export const getStaticPaths = (async () => {
-  const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`);
-  const postsData =
-    (await client.request(QueryPostsDocument)).posts?.data ?? [];
+  const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
+  const postsData = (await client.request(QueryPostsDocument)).posts?.data ?? []
   return postsData.map((post) => ({
     params: { slug: post.attributes?.slug },
     props: { postItem: post?.attributes },
-  }));
-}) satisfies GetStaticPaths;
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+  }))
+}) satisfies GetStaticPaths
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
-const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`);
-const { postItem } = Astro.props;
+const client = new GraphQLClient(`http://127.0.0.1:1337/graphql`)
+const { postItem } = Astro.props
 const blogTitle = (await client.request(QueryBlogSettingsDocument)).blogSetting
-  ?.data?.attributes?.title;
+  ?.data?.attributes?.title
 ---
 
 <Layout title={blogTitle ?? undefined}>
