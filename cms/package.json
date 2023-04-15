@@ -17,9 +17,9 @@
     "@strapi/plugin-seo": "^1.8.0",
     "@strapi/plugin-users-permissions": "4.9.1",
     "@strapi/strapi": "4.9.1",
-    "better-sqlite3": "8.3.0",
     "pg": "^8.10.0",
-    "reading-time": "^1.5.0"
+    "reading-time": "^1.5.0",
+    "strapi-provider-upload-supabase-strage": "^1.0.2"
   },
   "author": {
     "name": "A Strapi developer"
