@@ -5,8 +5,9 @@ import tailwind from "@astrojs/tailwind"
 import image from "@astrojs/image"
 import compress from "astro-compress"
 import robotsTxt from "astro-robots-txt"
-
 import sitemap from "@astrojs/sitemap"
+
+import partytown from "@astrojs/partytown"
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,5 +22,6 @@ export default defineConfig({
     compress(),
     sitemap(),
     robotsTxt(),
+    partytown(),
   ],
 })

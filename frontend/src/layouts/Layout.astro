@@ -33,5 +33,12 @@ const { metaDescription, metaImage } = seo ?? {}
   </head>
   <body class="bg-gray-50 h-max dark:bg-slate-800">
     <slot />
+    <script
+      type="text/partytown"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({
+        token: import.meta.env.PUBLIC_CF_BEACON,
+      })}
+    ></script>
   </body>
 </html>
