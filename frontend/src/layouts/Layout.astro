@@ -16,7 +16,11 @@ const { metaDescription, metaImage } = seo ?? {}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      type={metaImage?.data?.attributes?.mime}
+      href={metaImage?.data?.attributes?.url}
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={metaDescription} />

@@ -16,7 +16,7 @@ const documents = {
     "query queryBlogSettings {\n  blogSetting {\n    data {\n      attributes {\n        title\n        seo {\n          ...Seo\n        }\n      }\n    }\n  }\n}": types.QueryBlogSettingsDocument,
     "query queryPostBySlug($slug: String) {\n  posts(filters: {slug: {eq: $slug}}) {\n    data {\n      attributes {\n        title\n        content\n        slug\n        seo {\n          ...Seo\n        }\n      }\n    }\n  }\n}": types.QueryPostBySlugDocument,
     "query queryPosts {\n  posts {\n    data {\n      attributes {\n        title\n        content\n        slug\n        seo {\n          ...Seo\n        }\n      }\n    }\n  }\n}": types.QueryPostsDocument,
-    "fragment Seo on ComponentSharedSeo {\n  metaTitle\n  metaImage {\n    data {\n      attributes {\n        url\n      }\n    }\n  }\n  metaSocial {\n    socialNetwork\n    title\n    description\n  }\n  metaRobots\n  metaViewport\n  metaDescription\n  keywords\n  structuredData\n  canonicalURL\n}": types.SeoFragmentDoc,
+    "fragment Seo on ComponentSharedSeo {\n  metaTitle\n  metaImage {\n    data {\n      attributes {\n        url\n        mime\n      }\n    }\n  }\n  metaSocial {\n    socialNetwork\n    title\n    description\n  }\n  metaRobots\n  metaViewport\n  metaDescription\n  keywords\n  structuredData\n  canonicalURL\n}": types.SeoFragmentDoc,
 };
 
 /**
@@ -48,7 +48,7 @@ export function graphql(source: "query queryPosts {\n  posts {\n    data {\n    
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment Seo on ComponentSharedSeo {\n  metaTitle\n  metaImage {\n    data {\n      attributes {\n        url\n      }\n    }\n  }\n  metaSocial {\n    socialNetwork\n    title\n    description\n  }\n  metaRobots\n  metaViewport\n  metaDescription\n  keywords\n  structuredData\n  canonicalURL\n}"): (typeof documents)["fragment Seo on ComponentSharedSeo {\n  metaTitle\n  metaImage {\n    data {\n      attributes {\n        url\n      }\n    }\n  }\n  metaSocial {\n    socialNetwork\n    title\n    description\n  }\n  metaRobots\n  metaViewport\n  metaDescription\n  keywords\n  structuredData\n  canonicalURL\n}"];
+export function graphql(source: "fragment Seo on ComponentSharedSeo {\n  metaTitle\n  metaImage {\n    data {\n      attributes {\n        url\n        mime\n      }\n    }\n  }\n  metaSocial {\n    socialNetwork\n    title\n    description\n  }\n  metaRobots\n  metaViewport\n  metaDescription\n  keywords\n  structuredData\n  canonicalURL\n}"): (typeof documents)["fragment Seo on ComponentSharedSeo {\n  metaTitle\n  metaImage {\n    data {\n      attributes {\n        url\n        mime\n      }\n    }\n  }\n  metaSocial {\n    socialNetwork\n    title\n    description\n  }\n  metaRobots\n  metaViewport\n  metaDescription\n  keywords\n  structuredData\n  canonicalURL\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

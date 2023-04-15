@@ -4,6 +4,7 @@ fragment Seo on ComponentSharedSeo {
     data {
       attributes {
         url
+        mime
       }
     }
   }
