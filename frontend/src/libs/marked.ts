@@ -28,7 +28,7 @@ export const parseWithCustomRenderer = async ({
   renderer.image = (href, title, text) => {
     return `<picture>${allImages[text].sources
       .map(({ type, srcset }) => `<source type="${type}" srcset="${srcset}">`)
-      .join("")}<img loading="lazy" ${Object.keys(allImages[text].image)
+      .join("")}<img ${Object.keys(allImages[text].image)
       .map(
         (key) =>
           `${key}=${
