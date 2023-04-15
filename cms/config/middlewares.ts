@@ -29,7 +29,6 @@ export default ({ env }) => [
   {
     name: "strapi::cors",
     config: {
-      headers: "*",
       origin: [
         `http://localhost:${env("PORT") || 1337}`,
         env("SUPABASE_URL"),
