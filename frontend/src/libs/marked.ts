@@ -43,7 +43,7 @@ export const parseWithCustomRenderer = async ({
         width: imageSize === "xl" ? 1310 : 600,
         height: imageSize === "xl" ? 736 : 338,
         format: "webp",
-        src: `http://127.0.0.1:1337${href}`,
+        src: `${import.meta.env.PUBLIC_BACKEND_URL}${href}`,
         alt: text,
       })
       if (image.src) token.href = image.src
