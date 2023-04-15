@@ -1,13 +1,12 @@
-import { getImage } from "@astrojs/image"
+import { getImage, getPicture } from "@astrojs/image"
+import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture"
 import highlight from "highlight.js"
 import { marked } from "marked"
 
 export const parseWithCustomRenderer = async ({
   content,
-  imageSize,
 }: {
   content: string
-  imageSize: "xl" | "sm"
 }) => {
   const toc: {
     level: number
@@ -25,10 +24,18 @@ export const parseWithCustomRenderer = async ({
     })
     return "<h" + level + ' id="' + slug + '">' + text + "</h" + level + ">\n"
   }
+  const allImages: Record<string, GetPictureResult> = {}
   renderer.image = (href, title, text) => {
-    return `<img loading="lazy" alt="${text}" title="${title}" src="${href}" width="${
-      imageSize === "xl" ? 655 : 300
-    }" height="${imageSize === "xl" ? 368.4375 : 169}">`
+    return `<picture>${allImages[text].sources
+      .map(({ type, srcset }) => `<source type="${type}" srcset="${srcset}">`)
+      .join("")}<img loading="lazy" ${Object.keys(allImages[text].image)
+      .map(
+        (key) =>
+          `${key}=${
+            allImages[text].image[key as keyof astroHTML.JSX.ImgHTMLAttributes]
+          }`
+      )
+      .join(" ")} ></picture>`
   }
   marked.setOptions({
     renderer,
@@ -39,14 +46,15 @@ export const parseWithCustomRenderer = async ({
   const walkTokens = async (token: marked.Token) => {
     if (token.type === "image") {
       const { href, text } = token
-      const image = await getImage({
-        width: imageSize === "xl" ? 1310 : 600,
-        height: imageSize === "xl" ? 736 : 338,
-        format: "webp",
-        src: `${import.meta.env.PUBLIC_BACKEND_URL}${href}`,
+      const result = await getPicture({
+        widths: [350, 500, 650],
+        aspectRatio: "16:9",
+        src: href,
         alt: text,
+        formats: ["webp", "avif"],
+        fit: "inside",
       })
-      if (image.src) token.href = image.src
+      allImages[text] = result
     }
   }
   marked.use({ walkTokens, async: true })

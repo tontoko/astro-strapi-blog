@@ -33,7 +33,6 @@ const articleContents = Object.fromEntries(
       (
         await parseWithCustomRenderer({
           content: post?.attributes?.content ?? "",
-          imageSize: "sm",
         })
       ).parsedMarkdown,
     ])
@@ -65,7 +64,7 @@ const articleContents = Object.fromEntries(
       })
     }
   </main>
-  <footer class="prose dark:prose-invert max-w-none mx-14">
+  <footer class="prose dark:prose-invert max-w-none mx-14 mb-20">
     <nav class="flex justify-center">
       <div class="flex justify-between max-w-xs gap-6">
         {
