@@ -50,7 +50,7 @@ const articleContents = Object.fromEntries(
       data.map((post) => {
         return (
           <div>
-            <a href={`/blogs/${post.attributes?.slug}`}>
+            <a href={`/blogs/${post.attributes?.slug}`} rel="prefetch">
               <article class="break-words pb-8">
                 <h3>{post?.attributes?.title}</h3>
                 <div
@@ -69,7 +69,10 @@ const articleContents = Object.fromEntries(
       <div class="flex justify-between max-w-xs gap-6">
         {
           currentPage !== 1 ? (
-            <a href={`/${currentPage === 2 ? "" : currentPage - 1}`}>
+            <a
+              href={`/${currentPage === 2 ? "" : currentPage - 1}`}
+              rel="prefetch"
+            >
               Previous
             </a>
           ) : (
@@ -78,7 +81,9 @@ const articleContents = Object.fromEntries(
         }
         {
           currentPage !== lastPage ? (
-            <a href={`/${currentPage + 1}`}>Next</a>
+            <a href={`/${currentPage + 1}`} rel="prefetch">
+              Next
+            </a>
           ) : (
             <span>Next</span>
           )

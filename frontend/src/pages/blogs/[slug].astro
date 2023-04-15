@@ -50,7 +50,9 @@ const { parsedMarkdown, toc } = await parseWithCustomRenderer({
         {
           toc.map(({ level, slug, title }) => (
             <div style={`margin-left: ${(level - 1) * 16}px;`}>
-              <a href={"#" + slug}>{title}</a>
+              <a href={"#" + slug} rel="prefetch">
+                {title}
+              </a>
             </div>
           ))
         }
