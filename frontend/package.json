@@ -14,6 +14,7 @@
     "@astrojs/cloudflare": "^6.2.2",
     "@astrojs/image": "^0.16.6",
     "@astrojs/prefetch": "^0.2.1",
+    "@astrojs/sitemap": "^1.2.2",
     "@astrojs/svelte": "^2.1.0",
     "@astrojs/tailwind": "^3.1.1",
     "astro": "^2.3.0",

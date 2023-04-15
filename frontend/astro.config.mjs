@@ -4,8 +4,9 @@ import prefetch from "@astrojs/prefetch"
 import tailwind from "@astrojs/tailwind"
 import image from "@astrojs/image"
 import compress from "astro-compress"
-
 import robotsTxt from "astro-robots-txt"
+
+import sitemap from "@astrojs/sitemap"
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
     compress(),
+    sitemap(),
     robotsTxt(),
   ],
 })

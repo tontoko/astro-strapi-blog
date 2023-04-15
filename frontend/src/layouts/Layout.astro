@@ -29,6 +29,7 @@ const { metaDescription, metaImage } = seo ?? {}
     <meta property="og:image" content={metaImage?.data?.attributes?.url} />
     <meta property="twitter:image" content={metaImage?.data?.attributes?.url} />
     <meta property="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body class="bg-gray-50 h-max dark:bg-slate-800">
     <slot />
