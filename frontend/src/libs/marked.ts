@@ -47,7 +47,7 @@ export const parseWithCustomRenderer = async ({
     if (token.type === "image") {
       const { href, text } = token
       const result = await getPicture({
-        widths: [350, 500, 650],
+        widths: [700, 1000, 1300],
         aspectRatio: "16:9",
         src: href,
         alt: text,
