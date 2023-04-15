@@ -11,13 +11,14 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-color-picker": "^4.9.0",
-    "@strapi/plugin-graphql": "^4.9.0",
-    "@strapi/plugin-i18n": "4.9.0",
+    "@strapi/plugin-color-picker": "^4.9.1",
+    "@strapi/plugin-graphql": "^4.9.1",
+    "@strapi/plugin-i18n": "4.9.1",
     "@strapi/plugin-seo": "^1.8.0",
-    "@strapi/plugin-users-permissions": "4.9.0",
-    "@strapi/strapi": "4.9.0",
+    "@strapi/plugin-users-permissions": "4.9.1",
+    "@strapi/strapi": "4.9.1",
     "better-sqlite3": "8.3.0",
+    "pg": "^8.10.0",
     "reading-time": "^1.5.0"
   },
   "author": {
