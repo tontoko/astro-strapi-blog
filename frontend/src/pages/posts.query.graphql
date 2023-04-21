@@ -1,5 +1,5 @@
 query queryPosts {
-  posts {
+  posts(sort: "publishedAt:desc") {
     data {
       attributes {
         title
