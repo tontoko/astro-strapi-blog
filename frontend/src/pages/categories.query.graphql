@@ -1,0 +1,22 @@
+query queryCategories {
+  categories(sort: "updatedAt:desc") {
+    data {
+      attributes {
+        name
+        slug
+        posts {
+          data {
+            attributes {
+              title
+              content
+              slug
+              categories {
+                ...Categories
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

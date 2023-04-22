@@ -1,20 +1,23 @@
 ---
 import { GraphQLClient } from "graphql-request"
-import Layout from "../layouts/Layout.astro"
-import { QueryPostsDocument, QueryBlogSettingsDocument } from "../gql/graphql"
-import AppHeader from "../components/AppHeader.astro"
+import Layout from "../../layouts/Layout.astro"
+import {
+  QueryCategoriesDocument,
+  QueryBlogSettingsDocument,
+} from "../../gql/graphql"
+import AppHeader from "../../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
-import { parseWithCustomRenderer } from "../libs/marked"
-import type { ComponentSharedSeo } from "../gql/graphql"
-import type { PostEntity } from "../generated/graphql"
+import type { ComponentSharedSeo } from "../../gql/graphql"
+import type { CategoryEntity } from "../../generated/graphql"
 
 export const getStaticPaths = (async ({ paginate }) => {
   const client = new GraphQLClient(
     `${import.meta.env.PUBLIC_BACKEND_URL}/graphql`
   )
-  const postsData = (await client.request(QueryPostsDocument)).posts?.data ?? []
+  const categoriesData =
+    (await client.request(QueryCategoriesDocument)).categories?.data ?? []
 
-  return paginate(postsData, { pageSize: 5 })
+  return paginate(categoriesData, { pageSize: 10 })
 }) satisfies GetStaticPaths
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
@@ -27,15 +30,11 @@ const { title, seo } =
   (await client.request(QueryBlogSettingsDocument)).blogSetting?.data
     ?.attributes ?? {}
 
-const articleContents = Object.fromEntries(
+const categoryContents = Object.fromEntries(
   await Promise.all(
-    data.map(async (post: PostEntity) => [
-      post?.attributes?.slug,
-      (
-        await parseWithCustomRenderer({
-          content: post?.attributes?.content ?? "",
-        })
-      ).parsedMarkdown,
+    data.map(async (category: CategoryEntity) => [
+      category?.attributes?.slug,
+      category?.attributes?.name,
     ])
   )
 )
@@ -48,30 +47,16 @@ const articleContents = Object.fromEntries(
   <AppHeader blogTitle={title ?? undefined} />
   <main class="prose mx-10 md:mx-20 my-10 dark:prose-invert divide-y">
     {
-      data.map((post: PostEntity) => {
+      data.map((category: CategoryEntity) => {
         return (
           <div>
             <article class="break-words pb-8">
-              <a href={`/blogs/${post.attributes?.slug}`} rel="prefetch">
-                <h3>{post?.attributes?.title}</h3>
-                <div
-                  class="line-clamp-3"
-                  set:html={articleContents[post?.attributes?.slug ?? ""]}
-                />
+              <a
+                href={`/categories/show/${category.attributes?.slug}`}
+                rel="prefetch"
+              >
+                <h3>{category?.attributes?.name}</h3>
               </a>
-              <nav>
-                <p>
-                  categories:
-                  {post.attributes?.categories?.data?.map(({ attributes }) => {
-                    const { name, slug } = attributes ?? {}
-                    return (
-                      <a href={`/categories/show/${slug}`} rel="prefetch">
-                        {name}
-                      </a>
-                    )
-                  })}
-                </p>
-              </nav>
             </article>
           </div>
         )
@@ -84,7 +69,7 @@ const articleContents = Object.fromEntries(
         {
           currentPage !== 1 ? (
             <a
-              href={`/${currentPage === 2 ? "" : currentPage - 1}`}
+              href={`/categories/${currentPage === 2 ? "" : currentPage - 1}`}
               rel="prefetch"
             >
               Previous
@@ -95,7 +80,7 @@ const articleContents = Object.fromEntries(
         }
         {
           currentPage !== lastPage ? (
-            <a href={`/${currentPage + 1}`} rel="prefetch">
+            <a href={`/categories/${currentPage + 1}`} rel="prefetch">
               Next
             </a>
           ) : (

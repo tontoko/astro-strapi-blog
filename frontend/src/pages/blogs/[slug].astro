@@ -9,6 +9,7 @@ import AppHeader from "../../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import { parseWithCustomRenderer } from "../../libs/marked"
 import type { ComponentSharedSeo } from "../../gql/graphql"
+import type { Post } from "../../generated/graphql"
 
 export const getStaticPaths = (async () => {
   const client = new GraphQLClient(
@@ -17,7 +18,7 @@ export const getStaticPaths = (async () => {
   const postsData = (await client.request(QueryPostsDocument)).posts?.data ?? []
   return postsData.map((post) => ({
     params: { slug: post.attributes?.slug },
-    props: { postItem: post?.attributes },
+    props: { postItem: post?.attributes as Post },
   }))
 }) satisfies GetStaticPaths
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
@@ -60,5 +61,20 @@ const { parsedMarkdown, toc } = await parseWithCustomRenderer({
     </nav>
     <hr />
     <article set:html={parsedMarkdown} />
+    <nav>
+      <p>
+        categories:
+        {
+          postItem?.categories?.data?.map(({ attributes }) => {
+            const { name, slug } = attributes ?? {}
+            return (
+              <a href={`/categories/show/${slug}`} rel="prefetch">
+                {name}
+              </a>
+            )
+          })
+        }
+      </p>
+    </nav>
   </main>
 </Layout>

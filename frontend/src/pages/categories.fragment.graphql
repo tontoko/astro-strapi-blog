@@ -1,0 +1,15 @@
+fragment Categories on CategoryRelationResponseCollection {
+  data {
+    attributes {
+      name
+      slug
+      posts {
+        data {
+          attributes {
+            slug
+          }
+        }
+      }
+    }
+  }
+}

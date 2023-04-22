@@ -1,20 +1,42 @@
 ---
 import { GraphQLClient } from "graphql-request"
-import Layout from "../layouts/Layout.astro"
-import { QueryPostsDocument, QueryBlogSettingsDocument } from "../gql/graphql"
-import AppHeader from "../components/AppHeader.astro"
+import Layout from "../../../../layouts/Layout.astro"
+import {
+  QueryCategoriesDocument,
+  QueryBlogSettingsDocument,
+} from "../../../../gql/graphql"
+import AppHeader from "../../../../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
-import { parseWithCustomRenderer } from "../libs/marked"
-import type { ComponentSharedSeo } from "../gql/graphql"
-import type { PostEntity } from "../generated/graphql"
+import { parseWithCustomRenderer } from "../../../../libs/marked"
+import type {
+  Category,
+  CategoryEntity,
+  ComponentSharedSeo,
+  PostEntity,
+} from "../../../../gql/graphql"
 
 export const getStaticPaths = (async ({ paginate }) => {
   const client = new GraphQLClient(
     `${import.meta.env.PUBLIC_BACKEND_URL}/graphql`
   )
-  const postsData = (await client.request(QueryPostsDocument)).posts?.data ?? []
+  const categoriesData = (await client.request(QueryCategoriesDocument))
+    .categories?.data
 
-  return paginate(postsData, { pageSize: 5 })
+  return (
+    categoriesData?.map((categoryData) => {
+      const pagination = paginate(categoryData?.attributes?.posts?.data ?? [], {
+        pageSize: 5,
+        params: { slug: categoryData?.attributes?.slug },
+      })
+      return pagination.map((item) => ({
+        ...item,
+        props: {
+          ...item.props,
+          categoryItem: categoryData?.attributes,
+        },
+      }))
+    }) ?? []
+  )
 }) satisfies GetStaticPaths
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
@@ -39,6 +61,8 @@ const articleContents = Object.fromEntries(
     ])
   )
 )
+
+const categoryItem: Category = Astro.props.categoryItem
 ---
 
 <Layout
@@ -47,6 +71,7 @@ const articleContents = Object.fromEntries(
 >
   <AppHeader blogTitle={title ?? undefined} />
   <main class="prose mx-10 md:mx-20 my-10 dark:prose-invert divide-y">
+    <h1>category: {categoryItem?.name}</h1>
     {
       data.map((post: PostEntity) => {
         return (

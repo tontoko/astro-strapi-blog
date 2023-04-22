@@ -5,6 +5,9 @@ query queryPosts {
         title
         content
         slug
+        categories {
+          ...Categories
+        }
         seo {
           ...Seo
         }
