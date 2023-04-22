@@ -39,12 +39,6 @@
       "type": "uid",
       "required": true
     },
-    "categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::category.category",
-      "mappedBy": "post"
-    },
     "author": {
       "type": "relation",
       "relation": "oneToOne",
@@ -54,6 +48,12 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.seo"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "posts"
     }
   }
 }
