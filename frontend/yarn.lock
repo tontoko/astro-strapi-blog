@@ -1335,6 +1335,23 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@lightrix/config@0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@lightrix/config/-/config-0.0.11.tgz#0cdce7fd52eaf1658ba77c80cfad1edf0d01125c"
+  integrity sha512-1SCGXI/9L6ktYplKxjHMMa0fz+ZvRAfZVTkOClfIGoPDhXEoGxjSeigdgMXEapjSVIUODxSMQa7OWCFZEGeAcg==
+
+"@lightrix/scripts@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@lightrix/scripts/-/scripts-1.0.3.tgz#08684d8dc104c13876f6e78dddc6b54b13104f00"
+  integrity sha512-HmF03AWJJeW+J6neuUMuRoxE2gJgu1lE3aJnEmKu29q6X39km1+OWydM/6rxUpWlIxkca5PVC7hUS3iKzGWt6Q==
+  dependencies:
+    "@lightrix/config" "0.0.11"
+    commander "10.0.1"
+    deepmerge-ts "5.1.0"
+    esbuild "0.17.17"
+    fast-glob "3.2.12"
+    typescript "5.0.4"
+
 "@ljharb/has-package-exports-patterns@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@ljharb/has-package-exports-patterns/-/has-package-exports-patterns-0.0.2.tgz#c1718939b65efa1f45f53686c2fcfa992b9fb68f"
@@ -1884,16 +1901,18 @@ astral-regex@^2.0.0:
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-2.0.0.tgz#483143c567aeed4785759c0865786dc77d7d2e31"
   integrity sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==
 
-astro-compress@^1.1.40:
-  version "1.1.40"
-  resolved "https://registry.yarnpkg.com/astro-compress/-/astro-compress-1.1.40.tgz#20a51589d879a8dba57a162212b37fc7236fd863"
-  integrity sha512-ZYCofKCMtLrXmjNIfeZ+PhPjQkcAVJCJ9HPZe+amlyUtc+WCLov86dbpwWhDlfW3yeHbG2iV3UnE0zG60u8iOA==
+astro-compress@^1.1.42:
+  version "1.1.42"
+  resolved "https://registry.yarnpkg.com/astro-compress/-/astro-compress-1.1.42.tgz#f9573f483758cee74ecc37e6f5bbf599f31df255"
+  integrity sha512-heMdV3amY/k1NA4FHuNu1Nwady834tY79x8O39fBSlSvBpgESUCX2qergd7sMsaWushwqr47hWaSrfItELGaUg==
   dependencies:
+    "@lightrix/config" "0.0.11"
+    "@lightrix/scripts" "1.0.3"
     "@types/csso" "5.0.0"
     "@types/html-minifier-terser" "7.0.0"
     "@types/sharp" "0.31.1"
     csso "5.0.5"
-    files-pipe "0.0.3"
+    files-pipe "0.0.4"
     html-minifier-terser "7.2.0"
     sharp "0.32.0"
     svgo "3.0.2"
@@ -2454,7 +2473,7 @@ comma-separated-tokens@^2.0.0:
   resolved "https://registry.yarnpkg.com/comma-separated-tokens/-/comma-separated-tokens-2.0.3.tgz#4e89c9458acb61bc8fef19f4529973b2392839ee"
   integrity sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==
 
-commander@^10.0.0:
+commander@10.0.1, commander@^10.0.0:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.1.tgz#881ee46b4f77d1c1dccc5823433aa39b022cbe06"
   integrity sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==
@@ -2937,7 +2956,7 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-esbuild@^0.17.12, esbuild@^0.17.5:
+esbuild@0.17.17, esbuild@^0.17.12, esbuild@^0.17.5:
   version "0.17.17"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.17.17.tgz#fa906ab11b11d2ed4700f494f4f764229b25c916"
   integrity sha512-/jUywtAymR8jR4qsa2RujlAF7Krpt5VWi72Q2yuLD4e/hvtNcFQ0I1j8m/bxq238pf3/0KO5yuXNpuLx8BE1KA==
@@ -3270,11 +3289,13 @@ filename-reserved-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/filename-reserved-regex/-/filename-reserved-regex-3.0.0.tgz#3d5dd6d4e2d73a3fed2ebc4cd0b3448869a081f7"
   integrity sha512-hn4cQfU6GOT/7cFHXBqeBg2TbrMBgdD0kcjLhvSQYYwm3s4B6cjvBfb7nBALJLAXqmU5xajSa7X2NnUud/VCdw==
 
-files-pipe@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/files-pipe/-/files-pipe-0.0.3.tgz#303fd13eb952ff27c27a51b34d59c1ea1ad87708"
-  integrity sha512-6yWKK5MhB8U38HxYtudRXHA/2ssyQ77xvG7AgLGGj8Gf+jySkKUi51mO5PrJTBZLRhnYnXbfAWfMprAb6E7fAA==
+files-pipe@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/files-pipe/-/files-pipe-0.0.4.tgz#5a20c9088668cce8d560e3d496c7a5b88b9bb190"
+  integrity sha512-8vCSuNn9GsjepceObjeBHAAWgfA7DsBKDLmjbP/gSiWce/x8Hw/cefsgRTP9TJKL0pNgdfliG44s5kaLRjqQ+w==
   dependencies:
+    "@lightrix/config" "0.0.11"
+    "@lightrix/scripts" "1.0.3"
     deepmerge-ts "5.1.0"
     fast-glob "3.2.12"
 
@@ -6598,7 +6619,7 @@ typed-array-length@^1.0.4:
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
 
-typescript@*, typescript@^5.0.4:
+typescript@*, typescript@5.0.4, typescript@^5.0.4:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.4.tgz#b217fd20119bd61a94d4011274e0ab369058da3b"
   integrity sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==
