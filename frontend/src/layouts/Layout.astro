@@ -28,18 +28,6 @@ const { metaDescription, metaImage } = seo ?? {}
       })(window, document, "script", "dataLayer", import.meta.env.PUBLIC_GTM_ID)
     </script>
     <!-- End Google Tag Manager -->
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        title="Google Tag Manager"
-        src={`https://www.googletagmanager.com/ns.html?id=${
-          import.meta.env.PUBLIC_GTM_ID
-        }`}
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    >
-    <!-- End Google Tag Manager (noscript) -->
 
     <script
       type="text/partytown"
@@ -70,4 +58,17 @@ const { metaDescription, metaImage } = seo ?? {}
   <body class="bg-gray-50 h-max dark:bg-slate-800">
     <slot />
   </body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript
+    ><iframe
+      title="Google Tag Manager"
+      src={`https://www.googletagmanager.com/ns.html?id=${
+        import.meta.env.PUBLIC_GTM_ID
+      }`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"></iframe></noscript
+  >
+  <!-- End Google Tag Manager (noscript) -->
 </html>
