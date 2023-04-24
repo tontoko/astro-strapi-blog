@@ -22,6 +22,11 @@ export default defineConfig({
     compress(),
     sitemap(),
     robotsTxt(),
-    partytown(),
+    partytown({
+      // Example: Add dataLayer.push as a forwarding-event.
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
   ],
 })

@@ -9,6 +9,7 @@ export interface Props {
 
 const { title, seo } = Astro.props
 const { metaDescription, metaImage } = seo ?? {}
+const analyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID
 ---
 
 <!DOCTYPE html>
@@ -30,15 +31,24 @@ const { metaDescription, metaImage } = seo ?? {}
     <meta property="twitter:image" content={metaImage?.data?.attributes?.url} />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-  </head>
-  <body class="bg-gray-50 h-max dark:bg-slate-800">
-    <slot />
+
+    <!-- Google tag (gtag.js) -->
     <script
       type="text/partytown"
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon={JSON.stringify({
-        token: import.meta.env.PUBLIC_CF_BEACON,
-      })}
+      src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
     ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+
+      gtag("config", analyticsId)
+    </script>
+  </head>
+
+  <body class="bg-gray-50 h-max dark:bg-slate-800">
+    <slot />
   </body>
 </html>
