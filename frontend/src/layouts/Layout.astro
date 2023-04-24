@@ -9,12 +9,43 @@ export interface Props {
 
 const { title, seo } = Astro.props
 const { metaDescription, metaImage } = seo ?? {}
-const analyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="bg-gray-50 h-max dark:bg-slate-800 scroll-pt-16">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      ;(function (
+        w: Window & typeof globalThis,
+        d: Document,
+        s: "script",
+        l: "dataLayer",
+        i: string
+      ) {
+        w[l] = w[l] || []
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" })
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : ""
+        j.async = true
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl
+        f.parentNode?.insertBefore(j, f)
+      })(window, document, "script", "dataLayer", import.meta.env.PUBLIC_GTM_ID)
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        title="Google Tag Manager"
+        src={`https://www.googletagmanager.com/ns.html?id=${
+          import.meta.env.PUBLIC_GTM_ID
+        }`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link
@@ -31,21 +62,6 @@ const analyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID
     <meta property="twitter:image" content={metaImage?.data?.attributes?.url} />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <!-- Google tag (gtag.js) -->
-    <script
-      type="text/partytown"
-      src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
-    ></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag("js", new Date())
-
-      gtag("config", analyticsId)
-    </script>
   </head>
 
   <body class="bg-gray-50 h-max dark:bg-slate-800">
