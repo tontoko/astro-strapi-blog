@@ -37,7 +37,7 @@ const { parsedMarkdown, toc } = await parseWithCustomRenderer({
 ---
 
 <Layout
-  title={title ?? undefined}
+  title={`${title}-${postItem?.title}`}
   seo={({ ...blogSeo, ...postItem?.seo } as Partial<ComponentSharedSeo>) ??
     undefined}
 >

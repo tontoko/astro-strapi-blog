@@ -29,19 +29,10 @@ const { data, currentPage, lastPage } = page
 const { title, seo } =
   (await client.request(QueryBlogSettingsDocument)).blogSetting?.data
     ?.attributes ?? {}
-
-const categoryContents = Object.fromEntries(
-  await Promise.all(
-    data.map(async (category: CategoryEntity) => [
-      category?.attributes?.slug,
-      category?.attributes?.name,
-    ])
-  )
-)
 ---
 
 <Layout
-  title={title ?? undefined}
+  title={`${title}-categories`}
   seo={(seo as Partial<ComponentSharedSeo>) ?? undefined}
 >
   <AppHeader blogTitle={title ?? undefined} />
