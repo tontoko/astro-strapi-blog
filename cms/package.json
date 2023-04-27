@@ -11,12 +11,12 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-color-picker": "^4.9.2",
-    "@strapi/plugin-graphql": "^4.9.2",
-    "@strapi/plugin-i18n": "4.9.2",
+    "@strapi/plugin-color-picker": "^4.10.1",
+    "@strapi/plugin-graphql": "^4.10.1",
+    "@strapi/plugin-i18n": "4.10.1",
     "@strapi/plugin-seo": "^1.8.0",
-    "@strapi/plugin-users-permissions": "4.9.2",
-    "@strapi/strapi": "4.9.2",
+    "@strapi/plugin-users-permissions": "4.10.1",
+    "@strapi/strapi": "4.10.1",
     "pg": "^8.10.0",
     "reading-time": "^1.5.0",
     "strapi-provider-upload-supabase-strage": "^1.0.2"
