@@ -56,19 +56,19 @@ const { metaDescription, metaImage } = seo ?? {}
   </head>
 
   <body class="bg-gray-50 h-max dark:bg-slate-800">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        title="Google Tag Manager"
+        src={`https://www.googletagmanager.com/ns.html?id=${
+          import.meta.env.PUBLIC_GTM_ID
+        }`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+
     <slot />
   </body>
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript
-    ><iframe
-      title="Google Tag Manager"
-      src={`https://www.googletagmanager.com/ns.html?id=${
-        import.meta.env.PUBLIC_GTM_ID
-      }`}
-      height="0"
-      width="0"
-      style="display:none;visibility:hidden"></iframe></noscript
-  >
-  <!-- End Google Tag Manager (noscript) -->
 </html>
