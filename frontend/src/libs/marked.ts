@@ -1,6 +1,7 @@
 import { getImage, getPicture } from "@astrojs/image"
 import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture"
-import highlight from "highlight.js"
+import { markedHighlight } from "marked-highlight"
+import hljs from "highlight.js"
 import { marked } from "marked"
 
 export const parseWithCustomRenderer = async ({
@@ -15,6 +16,36 @@ export const parseWithCustomRenderer = async ({
   }[] = []
 
   const renderer = new marked.Renderer({ async: true })
+
+  const walkTokens = async (token: marked.Token) => {
+    if (token.type === "image") {
+      const { href, text } = token
+      const result = await getPicture({
+        widths: [700, 1000, 1300],
+        aspectRatio: "16:9",
+        src: href,
+        alt: text,
+        formats: ["webp", "avif"],
+        fit: "inside",
+      })
+      allImages[text] = result
+    }
+  }
+
+  marked.use(
+    markedHighlight({
+      langPrefix: "hljs language-",
+      highlight(code: string, lang: string) {
+        const language = hljs.getLanguage(lang) ? lang : "plaintext"
+        return hljs.highlight(code, { language }).value
+      },
+    }),
+    {
+      renderer,
+      walkTokens,
+      async: true,
+    }
+  )
   renderer.heading = (text, level) => {
     const slug = encodeURI(text.toLowerCase())
     toc.push({
@@ -37,27 +68,6 @@ export const parseWithCustomRenderer = async ({
       )
       .join(" ")} ></picture>`
   }
-  marked.setOptions({
-    renderer,
-    highlight: (code) => {
-      return highlight.highlightAuto(code).value
-    },
-  })
-  const walkTokens = async (token: marked.Token) => {
-    if (token.type === "image") {
-      const { href, text } = token
-      const result = await getPicture({
-        widths: [700, 1000, 1300],
-        aspectRatio: "16:9",
-        src: href,
-        alt: text,
-        formats: ["webp", "avif"],
-        fit: "inside",
-      })
-      allImages[text] = result
-    }
-  }
-  marked.use({ walkTokens, async: true })
   const parsedMarkdown = await marked.parse(content, {
     async: true,
   })
