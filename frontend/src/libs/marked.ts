@@ -17,6 +17,7 @@ export const parseWithCustomRenderer = async ({
 
   const renderer = new marked.Renderer({ async: true })
 
+  const allImages: Record<string, GetPictureResult> = {}
   const walkTokens = async (token: marked.Token) => {
     if (token.type === "image") {
       const { href, text } = token
@@ -32,20 +33,6 @@ export const parseWithCustomRenderer = async ({
     }
   }
 
-  marked.use(
-    markedHighlight({
-      langPrefix: "hljs language-",
-      highlight(code: string, lang: string) {
-        const language = hljs.getLanguage(lang) ? lang : "plaintext"
-        return hljs.highlight(code, { language }).value
-      },
-    }),
-    {
-      renderer,
-      walkTokens,
-      async: true,
-    }
-  )
   renderer.heading = (text, level) => {
     const slug = encodeURI(text.toLowerCase())
     toc.push({
@@ -55,7 +42,6 @@ export const parseWithCustomRenderer = async ({
     })
     return "<h" + level + ' id="' + slug + '">' + text + "</h" + level + ">\n"
   }
-  const allImages: Record<string, GetPictureResult> = {}
   renderer.image = (href, title, text) => {
     return `<picture>${allImages[text].sources
       .map(({ type, srcset }) => `<source type="${type}" srcset="${srcset}">`)
@@ -68,6 +54,23 @@ export const parseWithCustomRenderer = async ({
       )
       .join(" ")} ></picture>`
   }
+  marked.setOptions({
+    renderer,
+  })
+
+  marked.use(
+    markedHighlight({
+      langPrefix: "hljs language-",
+      highlight(code: string, lang: string) {
+        const language = hljs.getLanguage(lang) ? lang : "plaintext"
+        return hljs.highlight(code, { language }).value
+      },
+    }),
+    {
+      walkTokens,
+      async: true,
+    }
+  )
   const parsedMarkdown = await marked.parse(content, {
     async: true,
   })
