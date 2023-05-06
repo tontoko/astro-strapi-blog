@@ -70,7 +70,7 @@ export const parseWithCustomRenderer = async ({
             allImages[text].image[key as keyof astroHTML.JSX.ImgHTMLAttributes]
           }`
       )
-      .join(" ")} class="${small ? "max-w-xs" : "max-w-md"}" ></picture>`
+      .join(" ")} class="${small ? "max-w-xs" : ""}" ></picture>`
   }
   marked.setOptions({
     renderer,
