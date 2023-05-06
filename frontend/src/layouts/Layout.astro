@@ -9,6 +9,7 @@ export interface Props {
 
 const { title, seo } = Astro.props
 const { metaDescription, metaImage } = seo ?? {}
+const { PUBLIC_GTM_ID, PUBLIC_AD_ID } = import.meta.env
 ---
 
 <!DOCTYPE html>
@@ -25,15 +26,13 @@ const { metaDescription, metaImage } = seo ?? {}
         j.async = true
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl
         f.parentNode?.insertBefore(j, f)
-      })(window, document, "script", "dataLayer", import.meta.env.PUBLIC_GTM_ID)
+      })(window, document, "script", "dataLayer", PUBLIC_GTM_ID)
     </script>
     <!-- End Google Tag Manager -->
 
     <script
       type="text/partytown"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${
-        import.meta.env.PUBLIC_AD_ID
-      }`}
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${PUBLIC_AD_ID}`}
       crossorigin="anonymous"
     ></script>
 
@@ -60,9 +59,7 @@ const { metaDescription, metaImage } = seo ?? {}
     <noscript
       ><iframe
         title="Google Tag Manager"
-        src={`https://www.googletagmanager.com/ns.html?id=${
-          import.meta.env.PUBLIC_GTM_ID
-        }`}
+        src={`https://www.googletagmanager.com/ns.html?id=${PUBLIC_GTM_ID}`}
         height="0"
         width="0"
         style="display:none;visibility:hidden"></iframe></noscript
