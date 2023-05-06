@@ -61,20 +61,23 @@ const { parsedMarkdown, toc } = await parseWithCustomRenderer({
     </nav>
     <hr />
     <article set:html={parsedMarkdown} />
-    <nav>
-      <p>
-        categories:
+
+    <nav class="w-full mt-4">
+      categories:
+      <ul class="flex gap-1 m-0 p-0">
         {
-          postItem?.categories?.data?.map(({ attributes }) => {
+          postItem.categories?.data?.map(({ attributes }) => {
             const { name, slug } = attributes ?? {}
             return (
-              <a href={`/categories/show/${slug}`} rel="prefetch">
-                {name}
-              </a>
+              <li class="list-none m-0">
+                <a href={`/categories/show/${slug}`} rel="prefetch">
+                  {name}
+                </a>
+              </li>
             )
           })
         }
-      </p>
+      </ul>
     </nav>
   </main>
 </Layout>

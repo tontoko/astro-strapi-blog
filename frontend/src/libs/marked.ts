@@ -1,4 +1,4 @@
-import { getImage, getPicture } from "@astrojs/image"
+import { getPicture } from "@astrojs/image"
 import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture"
 import { markedHighlight } from "marked-highlight"
 import hljs from "highlight.js"
@@ -6,8 +6,10 @@ import { marked } from "marked"
 
 export const parseWithCustomRenderer = async ({
   content,
+  small = false,
 }: {
   content: string
+  small?: boolean
 }) => {
   const toc: {
     level: number
@@ -45,7 +47,18 @@ export const parseWithCustomRenderer = async ({
       slug: slug,
       title: text,
     })
-    return "<h" + level + ' id="' + slug + '">' + text + "</h" + level + ">\n"
+    const realLevel = small ? level + 1 : level
+    return (
+      "<h" +
+      realLevel +
+      ' id="' +
+      slug +
+      '">' +
+      text +
+      "</h" +
+      realLevel +
+      ">\n"
+    )
   }
   renderer.image = (href, title, text) => {
     return `<picture>${allImages[text].sources
@@ -57,7 +70,7 @@ export const parseWithCustomRenderer = async ({
             allImages[text].image[key as keyof astroHTML.JSX.ImgHTMLAttributes]
           }`
       )
-      .join(" ")} ></picture>`
+      .join(" ")} class="${small ? "max-w-xs" : "max-w-md"}" ></picture>`
   }
   marked.setOptions({
     renderer,

@@ -34,6 +34,7 @@ const articleContents = Object.fromEntries(
       (
         await parseWithCustomRenderer({
           content: post?.attributes?.content ?? "",
+          small: true,
         })
       ).parsedMarkdown,
     ])
@@ -51,26 +52,28 @@ const articleContents = Object.fromEntries(
       data.map((post: PostEntity) => {
         return (
           <div>
-            <article class="break-words pb-8">
+            <article class="break-words py-8">
               <a href={`/blogs/${post.attributes?.slug}`} rel="prefetch">
-                <h3>{post?.attributes?.title}</h3>
+                <h1>{post?.attributes?.title}</h1>
                 <div
                   class="line-clamp-3"
                   set:html={articleContents[post?.attributes?.slug ?? ""]}
                 />
               </a>
-              <nav>
-                <p>
-                  categories:
+              <nav class="w-full mt-4">
+                categories:
+                <ul class="flex gap-1 m-0 p-0">
                   {post.attributes?.categories?.data?.map(({ attributes }) => {
                     const { name, slug } = attributes ?? {}
                     return (
-                      <a href={`/categories/show/${slug}`} rel="prefetch">
-                        {name}
-                      </a>
+                      <li class="list-none m-0">
+                        <a href={`/categories/show/${slug}`} rel="prefetch">
+                          {name}
+                        </a>
+                      </li>
                     )
                   })}
-                </p>
+                </ul>
               </nav>
             </article>
           </div>
