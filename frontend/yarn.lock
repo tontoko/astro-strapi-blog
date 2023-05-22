@@ -58,17 +58,7 @@
     esbuild "^0.17.12"
     tiny-glob "^0.2.9"
 
-"@astrojs/compiler@^1.0.0", "@astrojs/compiler@^1.0.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-1.3.1.tgz#76930733f6711af0242307da681ca9d278a33df7"
-  integrity sha512-xV/3r+Hrfpr4ECfJjRjeaMkJvU73KiOADowHjhkqidfNPVAWPzbqw1KePXuMK1TjzMvoAVE7E163oqfH3lDwSw==
-
-"@astrojs/compiler@^1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-1.3.2.tgz#94d86e2a429f18d6816a33733b3f3047c7ad308f"
-  integrity sha512-W/2Mdsq75ruK31dPVlXLdvAoknYDcm6+zXiFToSzQWI7wZqqR+51XTFgx90ojYbefk7z4VOJSVtZBz2pA82F5A==
-
-"@astrojs/compiler@^1.4.0":
+"@astrojs/compiler@^1.0.0", "@astrojs/compiler@^1.0.1", "@astrojs/compiler@^1.3.2", "@astrojs/compiler@^1.4.0":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-1.4.1.tgz#9cf6d011a1dbdc9ff81923ec02b45043c1c71924"
   integrity sha512-aXAxapNWZwGN41P+Am/ma/2kAzKOhMNaY6YuvLkUHFv+UZkmDHD6F0fE1sQA2Up0bLjgPQa1VQzoAaii5tZWaA==
@@ -2093,10 +2083,10 @@ astro-robots-txt@^0.5.0:
     valid-filename "^4.0.0"
     zod "^3.21.4"
 
-astro@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-2.5.0.tgz#8216c005cb1533f720a3ec41715f1238fe89536a"
-  integrity sha512-dZZuK2vEpfinbVALthUW31NOVUFPobgyi0+2PR3FH3diy6X9HBw1PLbS5wRsWOKaEXRbzxBkXc39Rbm0yRzKaA==
+astro@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-2.5.1.tgz#c3b265b9871a43f8244ac6dd8c0a033016bdcfb5"
+  integrity sha512-tOVlDWxxE8VBGoolW0AS0kUo7ynAMjfOPKK0XyqprAtcN7pvYZ29gLG6RJTitDhzzP3HDt+Vecg9PuUOtHrITg==
   dependencies:
     "@astrojs/compiler" "^1.4.0"
     "@astrojs/language-server" "^1.0.0"
@@ -3111,7 +3101,7 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-esbuild@0.17.17, esbuild@^0.17.12, esbuild@^0.17.5:
+esbuild@0.17.17:
   version "0.17.17"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.17.17.tgz#fa906ab11b11d2ed4700f494f4f764229b25c916"
   integrity sha512-/jUywtAymR8jR4qsa2RujlAF7Krpt5VWi72Q2yuLD4e/hvtNcFQ0I1j8m/bxq238pf3/0KO5yuXNpuLx8BE1KA==
@@ -3139,7 +3129,7 @@ esbuild@0.17.17, esbuild@^0.17.12, esbuild@^0.17.5:
     "@esbuild/win32-ia32" "0.17.17"
     "@esbuild/win32-x64" "0.17.17"
 
-esbuild@^0.17.18:
+esbuild@^0.17.12, esbuild@^0.17.18, esbuild@^0.17.5:
   version "0.17.19"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.17.19.tgz#087a727e98299f0462a3d0bcdd9cd7ff100bd955"
   integrity sha512-XQ0jAPFkK/u3LcVRcvVHQcTIqD6E2H1fvZMA5dQPSOWb3suUbWbfbRf94pjc0bNzRYLfIrDRQXr7X+LHIm5oHw==
