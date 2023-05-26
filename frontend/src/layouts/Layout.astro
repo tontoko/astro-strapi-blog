@@ -16,7 +16,7 @@ const { PUBLIC_GTM_ID, PUBLIC_AD_ID } = import.meta.env
 <html lang="en" class="bg-gray-50 h-max dark:bg-slate-800 scroll-pt-16">
   <head>
     <!-- Google Tag Manager -->
-    <script type="text/partytown">
+    <script type="text/partytown" define:vars={{ PUBLIC_GTM_ID }}>
       ;(function (w, d, s, l, i) {
         w[l] = w[l] || []
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" })
