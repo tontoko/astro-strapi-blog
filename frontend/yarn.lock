@@ -4654,10 +4654,10 @@ marked-highlight@^2.0.1:
   resolved "https://registry.yarnpkg.com/marked-highlight/-/marked-highlight-2.0.1.tgz#a2b48533df77ea73bec3895be98bae6160dceec3"
   integrity sha512-LDUfR/zDvD+dJ+lQOWHkxvBLNxiXcaN8pBtwJ/i4pI0bkDC/Ef6Mz1qUrAuHXfnpdr2rabdMpVFhqFuU+5Mskg==
 
-marked@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-5.0.2.tgz#ac79e78ea7ed9ad31de70b85e274595d9029e534"
-  integrity sha512-TXksm9GwqXCRNbFUZmMtqNLvy3K2cQHuWmyBDLOrY1e6i9UvZpOTJXoz7fBjYkJkaUFzV9hBFxMuZSyQt8R6KQ==
+marked@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-5.0.3.tgz#a8d0d457d7bce3606db3e32bb0797490cec2fa19"
+  integrity sha512-KUONa43Uk74uUNWMxh6lfaNYmSAsRMiDAaX8QBCCRVXzEufR0zX6T33vrGbvTnQLL02ungDM3KSzZtO+chJaHg==
 
 mdast-util-definitions@^5.0.0:
   version "5.1.2"
@@ -5717,10 +5717,10 @@ prettier-plugin-astro@^0.8.0:
     sass-formatter "^0.7.5"
     synckit "^0.8.4"
 
-prettier-plugin-astro@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-astro/-/prettier-plugin-astro-0.9.0.tgz#7ea3c75a7e885c0f9cdce63c1076932d0f3c7c8a"
-  integrity sha512-LZ47EzCz0RvJBzC2GhtP5MI4ygEci/N5z73MMWAZFIOfSrn53sWCz0pN2HDwDGI7tvGg5Q5dnaX4EBrzkdb2Hg==
+prettier-plugin-astro@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-astro/-/prettier-plugin-astro-0.9.1.tgz#237d2f536d66501c3a351614c43c2372baca7411"
+  integrity sha512-pYZXSbdq0eElvzoIMArzv1SBn1NUXzopjlcnt6Ql8VW32PjC12NovwBjXJ6rh8qQLi7vF8jNqAbraKW03UPfag==
   dependencies:
     "@astrojs/compiler" "^1.0.1"
     prettier "^2.8.3"
