@@ -2043,6 +2043,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/react-use-previous@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-previous/-/react-use-previous-1.0.1.tgz#b595c087b07317a4f143696c6a01de43b0d0ec66"
+  integrity sha512-cV5La9DPwiQ7S0gf/0qiD6YgNqM5Fk97Kdrlc5yBcrF3jyEZQwm7vYFqMo4IfeHgJXsRaMvLABFtd0OVEmZhDw==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+
 "@radix-ui/react-use-rect@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-rect/-/react-use-rect-1.0.0.tgz#b040cc88a4906b78696cd3a32b075ed5b1423b3e"
@@ -2342,6 +2349,24 @@
     prop-types "^15.8.1"
     react-remove-scroll "^2.5.5"
 
+"@strapi/design-system@1.7.9":
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/@strapi/design-system/-/design-system-1.7.9.tgz#c96d29c7ed579416a8250b501bf383509a6d860b"
+  integrity sha512-RYMwPI78JZfWNLFG9dhmm0PFqp3z4Lo7DR8vlkcp1BW285A2MnHCQCwmU96nx4c58xEa8EDWt8Aiak0dUiE2EA==
+  dependencies:
+    "@codemirror/lang-json" "^6.0.1"
+    "@floating-ui/react-dom" "^1.3.0"
+    "@internationalized/number" "^3.2.0"
+    "@radix-ui/react-dismissable-layer" "^1.0.3"
+    "@radix-ui/react-dropdown-menu" "^2.0.4"
+    "@radix-ui/react-focus-scope" "1.0.2"
+    "@strapi/ui-primitives" "^1.7.9"
+    "@uiw/react-codemirror" "^4.19.16"
+    aria-hidden "^1.2.3"
+    compute-scroll-into-view "^3.0.3"
+    prop-types "^15.8.1"
+    react-remove-scroll "^2.5.5"
+
 "@strapi/generate-new@4.10.6":
   version "4.10.6"
   resolved "https://registry.yarnpkg.com/@strapi/generate-new/-/generate-new-4.10.6.tgz#2245e3fb9b105433626f78d1f1ba7c287c3a94ef"
@@ -2390,10 +2415,31 @@
     react-intl "6.4.1"
     react-select "5.7.0"
 
+"@strapi/helper-plugin@4.10.7":
+  version "4.10.7"
+  resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.10.7.tgz#bad1fd44b58d8b64e745e124425327320a1e8c41"
+  integrity sha512-zfgMPhVgpO9FCUBqpbWfd5NvfljQLdHy7DnA6JpkGU7Q6PCa/u6vINut1Ie1M+aSRs7VqVUkaZ9RbM0gXJcB0w==
+  dependencies:
+    axios "1.4.0"
+    date-fns "2.30.0"
+    formik "^2.4.0"
+    immer "9.0.19"
+    lodash "4.17.21"
+    prop-types "^15.7.2"
+    qs "6.11.1"
+    react-helmet "^6.1.0"
+    react-intl "6.4.1"
+    react-select "5.7.0"
+
 "@strapi/icons@1.7.7":
   version "1.7.7"
   resolved "https://registry.yarnpkg.com/@strapi/icons/-/icons-1.7.7.tgz#0256be564ca08b26ff12a3dade39d742de03e35c"
   integrity sha512-ZMMbS6Kz6mtdfIEUz8VfWEEV1bw2IcAQvFDDxYRYdMr6zivmfRyRGKtIYBdhG2qMn3PhBD9VdVmCB9BIG0WEZw==
+
+"@strapi/icons@1.7.9":
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/@strapi/icons/-/icons-1.7.9.tgz#fa6706c76ea6d626023625f2ba01e7e58c221c24"
+  integrity sha512-mrX4LtPwbbLGlNCK/y6nUeDGDUGKqFXczjetJAeQSMoKsCbfwIurPD8qicG/mgTj3I3XN3Ud2T+qcEc/kvAzvQ==
 
 "@strapi/logger@4.10.6":
   version "4.10.6"
@@ -2413,14 +2459,14 @@
     lodash "4.17.21"
     sift "16.0.1"
 
-"@strapi/plugin-color-picker@^4.10.6":
-  version "4.10.6"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-color-picker/-/plugin-color-picker-4.10.6.tgz#fbd4bc1074dcceb9a98988549fce577f3debc569"
-  integrity sha512-DbkwRDRia5yBO7nphhjwwPzR3nNMAfeQECyoYyp5ptpED5JMqnwdJ4xrYGtiAfai4JdH8SdYGfJcxpXKt0cr3Q==
+"@strapi/plugin-color-picker@^4.10.7":
+  version "4.10.7"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-color-picker/-/plugin-color-picker-4.10.7.tgz#254fde5c45fc02f404deacefe0c015ca761211db"
+  integrity sha512-jOSmxs97sAPSxPlj3HfrxSfF4ejAfHlv2j2NXHAXpESxCcm8yleOMbllblZbAWyn+JxAHnnGuA3fHeKy4cFhmg==
   dependencies:
-    "@strapi/design-system" "1.7.7"
-    "@strapi/helper-plugin" "4.10.6"
-    "@strapi/icons" "1.7.7"
+    "@strapi/design-system" "1.7.9"
+    "@strapi/helper-plugin" "4.10.7"
+    "@strapi/icons" "1.7.9"
     prop-types "^15.8.1"
     react-colorful "5.6.1"
     react-intl "6.4.1"
@@ -2701,6 +2747,33 @@
     "@radix-ui/react-use-controllable-state" "^1.0.0"
     "@radix-ui/react-use-layout-effect" "1.0.0"
     "@radix-ui/react-use-previous" "^1.0.0"
+    "@radix-ui/react-visually-hidden" "^1.0.2"
+    aria-hidden "^1.2.3"
+    react-remove-scroll "^2.5.5"
+
+"@strapi/ui-primitives@^1.7.9":
+  version "1.7.10"
+  resolved "https://registry.yarnpkg.com/@strapi/ui-primitives/-/ui-primitives-1.7.10.tgz#0d574c3bfe282fdc2c639a898d470a5431726935"
+  integrity sha512-YPuOngAsJz0dKcQ8XieHHhlEDEo6w+vny4hyHA/kuuQ5TCZReL6LqXyFfIBSVoXjxWkTUuo+xcl9KLWwf0ZsCw==
+  dependencies:
+    "@radix-ui/number" "^1.0.0"
+    "@radix-ui/primitive" "^1.0.0"
+    "@radix-ui/react-collection" "1.0.2"
+    "@radix-ui/react-compose-refs" "^1.0.0"
+    "@radix-ui/react-context" "^1.0.0"
+    "@radix-ui/react-direction" "1.0.0"
+    "@radix-ui/react-dismissable-layer" "^1.0.3"
+    "@radix-ui/react-focus-guards" "1.0.0"
+    "@radix-ui/react-focus-scope" "1.0.2"
+    "@radix-ui/react-id" "^1.0.0"
+    "@radix-ui/react-popper" "^1.1.1"
+    "@radix-ui/react-portal" "^1.0.2"
+    "@radix-ui/react-primitive" "^1.0.2"
+    "@radix-ui/react-slot" "^1.0.1"
+    "@radix-ui/react-use-callback-ref" "^1.0.0"
+    "@radix-ui/react-use-controllable-state" "^1.0.0"
+    "@radix-ui/react-use-layout-effect" "1.0.0"
+    "@radix-ui/react-use-previous" "^1.0.1"
     "@radix-ui/react-visually-hidden" "^1.0.2"
     aria-hidden "^1.2.3"
     react-remove-scroll "^2.5.5"
@@ -3730,6 +3803,15 @@ axios@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.3.4.tgz#f5760cefd9cfb51fd2481acf88c05f67c4523024"
   integrity sha512-toYm+Bsyl6VC5wSkfkbbNB6ROv7KY93PEBBL6xyDczaIHasAiv4wPqQ/c4RjoQzipxRD2W5g21cOqQulZ7rHwQ==
+  dependencies:
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
+  integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"
@@ -5715,6 +5797,19 @@ formik@2.2.9, formik@^2.2.6:
   version "2.2.9"
   resolved "https://registry.yarnpkg.com/formik/-/formik-2.2.9.tgz#8594ba9c5e2e5cf1f42c5704128e119fc46232d0"
   integrity sha512-LQLcISMmf1r5at4/gyJigGn0gOwFbeEAlji+N9InZF6LIMXnFNkO42sCI8Jt84YZggpD4cPWObAZaxpEFtSzNA==
+  dependencies:
+    deepmerge "^2.1.1"
+    hoist-non-react-statics "^3.3.0"
+    lodash "^4.17.21"
+    lodash-es "^4.17.21"
+    react-fast-compare "^2.0.1"
+    tiny-warning "^1.0.2"
+    tslib "^1.10.0"
+
+formik@^2.4.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/formik/-/formik-2.4.1.tgz#f2630b51a866c86144a5faf68d31200c9d8ceea9"
+  integrity sha512-ajOB9EmFhXb4PACTlaooVEn7PLtLtBJEZ8fPs+wFZjL5KSGwgAoU+n9DHN8JcqNKcXkloEYYtn1lxrLav18ecQ==
   dependencies:
     deepmerge "^2.1.1"
     hoist-non-react-statics "^3.3.0"
