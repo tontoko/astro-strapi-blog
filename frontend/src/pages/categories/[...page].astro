@@ -6,7 +6,7 @@ import {
   QueryBlogSettingsDocument,
 } from "../../gql/graphql"
 import AppHeader from "../../components/AppHeader.astro"
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
+import type { GetStaticPaths, InferGetStaticPropsType, Page } from "astro"
 import type { ComponentSharedSeo } from "../../gql/graphql"
 import type { CategoryEntity } from "../../generated/graphql"
 
@@ -19,13 +19,12 @@ export const getStaticPaths = (async ({ paginate }) => {
 
   return paginate(categoriesData, { pageSize: 10 })
 }) satisfies GetStaticPaths
-type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const client = new GraphQLClient(
   `${import.meta.env.PUBLIC_BACKEND_URL}/graphql`
 )
 const { page } = Astro.props
-const { data, currentPage, lastPage } = page
+const { data, currentPage, lastPage } = page as Page<CategoryEntity>
 const { title, seo } =
   (await client.request(QueryBlogSettingsDocument)).blogSetting?.data
     ?.attributes ?? {}
@@ -38,7 +37,7 @@ const { title, seo } =
   <AppHeader blogTitle={title ?? undefined} />
   <main class="prose mx-10 md:mx-20 my-10 dark:prose-invert divide-y">
     {
-      data.map((category: CategoryEntity) => {
+      data.map((category) => {
         return (
           <div>
             <article class="break-words pb-8">
