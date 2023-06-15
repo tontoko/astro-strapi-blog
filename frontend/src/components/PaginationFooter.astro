@@ -1,0 +1,20 @@
+---
+import type { Page } from "astro"
+interface Props {
+  page: Page
+}
+const { page } = Astro.props
+---
+
+<footer class="prose dark:prose-invert max-w-none mx-14 mb-20">
+  <nav class="flex justify-center">
+    <div class="flex justify-between max-w-xs gap-6">
+      <a href={page.url.prev} rel={page.url.prev ? "prefetch" : undefined}>
+        Previous
+      </a>
+      <a href={page.url.next} rel={page.url.next ? "prefetch" : undefined}>
+        Next
+      </a>
+    </div>
+  </nav>
+</footer>

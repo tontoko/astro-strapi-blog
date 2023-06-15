@@ -9,6 +9,7 @@ import AppHeader from "../../components/AppHeader.astro"
 import type { GetStaticPaths, InferGetStaticPropsType, Page } from "astro"
 import type { ComponentSharedSeo } from "../../gql/graphql"
 import type { CategoryEntity } from "../../generated/graphql"
+import PaginationFooter from "../../components/PaginationFooter.astro"
 
 export const getStaticPaths = (async ({ paginate }) => {
   const client = new GraphQLClient(
@@ -53,31 +54,5 @@ const { title, seo } =
       })
     }
   </main>
-  <footer class="prose dark:prose-invert max-w-none mx-14 mb-20">
-    <nav class="flex justify-center">
-      <div class="flex justify-between max-w-xs gap-6">
-        {
-          currentPage !== 1 ? (
-            <a
-              href={`/categories/${currentPage === 2 ? "" : currentPage - 1}`}
-              rel="prefetch"
-            >
-              Previous
-            </a>
-          ) : (
-            <span>Previous</span>
-          )
-        }
-        {
-          currentPage !== lastPage ? (
-            <a href={`/categories/${currentPage + 1}`} rel="prefetch">
-              Next
-            </a>
-          ) : (
-            <span>Next</span>
-          )
-        }
-      </div>
-    </nav>
-  </footer>
+  <PaginationFooter page={page} />
 </Layout>
