@@ -15,7 +15,7 @@
     "@strapi/plugin-graphql": "^4.11.3",
     "@strapi/plugin-i18n": "4.11.3",
     "@strapi/plugin-seo": "^1.9.2",
-    "@strapi/plugin-users-permissions": "4.11.3",
+    "@strapi/plugin-users-permissions": "4.11.4",
     "@strapi/strapi": "4.11.3",
     "pg": "^8.11.1",
     "reading-time": "^1.5.0",
