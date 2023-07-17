@@ -16,7 +16,7 @@
     "@strapi/plugin-i18n": "4.11.3",
     "@strapi/plugin-seo": "^1.9.2",
     "@strapi/plugin-users-permissions": "4.11.3",
-    "@strapi/strapi": "4.11.3",
+    "@strapi/strapi": "4.11.5",
     "pg": "^8.11.1",
     "reading-time": "^1.5.0",
     "strapi-provider-upload-supabase-strage": "^1.0.2"
