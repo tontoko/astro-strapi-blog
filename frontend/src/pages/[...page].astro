@@ -52,7 +52,7 @@ const articleContents = Object.fromEntries(
       data.map((post: PostEntity) => {
         return (
           <div>
-            <article class="break-words py-8">
+            <article class="break-words py-16">
               <a href={`/blogs/${post.attributes?.slug}`} rel="prefetch">
                 <h1>{post?.attributes?.title}</h1>
                 <div
@@ -60,7 +60,7 @@ const articleContents = Object.fromEntries(
                   set:html={articleContents[post?.attributes?.slug ?? ""]}
                 />
               </a>
-              <nav class="w-full mt-4">
+              <nav class="w-full mt-8">
                 categories:
                 <ul class="flex gap-1 m-0 p-0">
                   {post.attributes?.categories?.data?.map(({ attributes }) => {

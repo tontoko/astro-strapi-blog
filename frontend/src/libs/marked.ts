@@ -2,7 +2,7 @@ import { getPicture } from "@astrojs/image"
 import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture"
 import { markedHighlight } from "marked-highlight"
 import hljs from "highlight.js"
-import { marked } from "marked"
+import { marked, type Token } from "marked"
 
 export const parseWithCustomRenderer = async ({
   content,
@@ -20,7 +20,7 @@ export const parseWithCustomRenderer = async ({
   const renderer = new marked.Renderer({ async: true })
 
   const allImages: Record<string, GetPictureResult> = {}
-  const walkTokens = async (token: marked.Token) => {
+  const walkTokens = async (token: Token) => {
     if (token.type === "image") {
       const { href, text } = token
       const result = await getPicture({
@@ -68,9 +68,9 @@ export const parseWithCustomRenderer = async ({
         (key) =>
           `${key}=${
             allImages[text].image[key as keyof astroHTML.JSX.ImgHTMLAttributes]
-          }`
+          }`,
       )
-      .join(" ")} class="${small ? "max-w-xs" : ""}" ></picture>`
+      .join(" ")} class="max-w-xs" ></picture>`
   }
   marked.setOptions({
     renderer,
@@ -87,7 +87,7 @@ export const parseWithCustomRenderer = async ({
     {
       walkTokens,
       async: true,
-    }
+    },
   )
   const parsedMarkdown = await marked.parse(content, {
     async: true,

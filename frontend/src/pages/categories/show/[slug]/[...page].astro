@@ -56,6 +56,7 @@ const articleContents = Object.fromEntries(
       (
         await parseWithCustomRenderer({
           content: post?.attributes?.content ?? "",
+          small: true,
         })
       ).parsedMarkdown,
     ])
@@ -76,9 +77,9 @@ const categoryItem: Category = Astro.props.categoryItem
       data.map((post: PostEntity) => {
         return (
           <div>
-            <article class="break-words pb-8">
+            <article class="break-words py-16">
               <a href={`/blogs/${post.attributes?.slug}`} rel="prefetch">
-                <h3>{post?.attributes?.title}</h3>
+                <h1>{post?.attributes?.title}</h1>
                 <div
                   class="line-clamp-3"
                   set:html={articleContents[post?.attributes?.slug ?? ""]}
