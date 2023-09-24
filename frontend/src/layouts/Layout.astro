@@ -1,6 +1,7 @@
 ---
 import "highlight.js/styles/github-dark-dimmed.css"
 import type { ComponentSharedSeo } from "../gql/graphql"
+import { ViewTransitions } from "astro:transitions"
 
 export interface Props {
   title?: string
@@ -15,6 +16,8 @@ const { PUBLIC_GTM_ID, PUBLIC_AD_ID } = import.meta.env
 <!DOCTYPE html>
 <html lang="en" class="bg-gray-50 h-max dark:bg-slate-800 scroll-pt-16">
   <head>
+    <ViewTransitions />
+    
     <!-- Google Tag Manager -->
     <script type="text/partytown" define:vars={{ PUBLIC_GTM_ID }}>
       ;(function (w, d, s, l, i) {
