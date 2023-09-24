@@ -27,7 +27,6 @@ export const parseWithCustomRenderer = async ({
         src: href,
         height: 640,
         width: 640,
-        format: "webp",
       } satisfies ImageTransform)
       allImages[text] = result
     }
