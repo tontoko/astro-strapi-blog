@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config"
 import svelte from "@astrojs/svelte"
 import prefetch from "@astrojs/prefetch"
 import tailwind from "@astrojs/tailwind"
-import image from "@astrojs/image"
 import compress from "astro-compress"
 import robotsTxt from "astro-robots-txt"
 import sitemap from "@astrojs/sitemap"
@@ -16,9 +15,6 @@ export default defineConfig({
     svelte(),
     prefetch(),
     tailwind(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
     compress(),
     sitemap(),
     robotsTxt(),

@@ -24,7 +24,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     .categories?.data
 
   return (
-    categoriesData?.map((categoryData) => {
+    categoriesData?.flatMap((categoryData) => {
       const pagination = paginate(categoryData?.attributes?.posts?.data ?? [], {
         pageSize: 5,
         params: { slug: categoryData?.attributes?.slug },

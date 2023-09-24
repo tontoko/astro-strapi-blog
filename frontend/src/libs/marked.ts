@@ -1,8 +1,8 @@
-import { getPicture } from "@astrojs/image"
-import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture"
+import { getImage } from "astro:assets"
 import { markedHighlight } from "marked-highlight"
 import hljs from "highlight.js"
 import { marked, type Token } from "marked"
+import type { GetImageResult, ImageTransform } from "astro"
 
 export const parseWithCustomRenderer = async ({
   content,
@@ -19,18 +19,16 @@ export const parseWithCustomRenderer = async ({
 
   const renderer = new marked.Renderer({ async: true })
 
-  const allImages: Record<string, GetPictureResult> = {}
+  const allImages: Record<string, GetImageResult> = {}
   const walkTokens = async (token: Token) => {
     if (token.type === "image") {
       const { href, text } = token
-      const result = await getPicture({
-        widths: [640, 768, 892, 1280],
-        aspectRatio: "16:9",
+      const result = await getImage({
         src: href,
-        alt: text,
-        formats: ["webp", "avif"],
-        fit: "inside",
-      })
+        height: 640,
+        width: 640,
+        format: "webp",
+      } satisfies ImageTransform)
       allImages[text] = result
     }
   }
@@ -61,16 +59,10 @@ export const parseWithCustomRenderer = async ({
     )
   }
   renderer.image = (href, title, text) => {
-    return `<picture>${allImages[text].sources
-      .map(({ type, srcset }) => `<source type="${type}" srcset="${srcset}">`)
-      .join("")}<img ${Object.keys(allImages[text].image)
-      .map(
-        (key) =>
-          `${key}=${
-            allImages[text].image[key as keyof astroHTML.JSX.ImgHTMLAttributes]
-          }`,
-      )
-      .join(" ")} class="max-w-xs" ></picture>`
+    const { src, attributes } = allImages[text]
+    return `<img src="${src}" alt="${text}" ${Object.keys(attributes)
+      .map((key) => `${key}="${attributes[key]}"`)
+      .join(" ")} class="max-w-xs"></img>`
   }
   marked.setOptions({
     renderer,
