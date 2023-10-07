@@ -16,12 +16,12 @@
     "util": "^0.12.5"
   },
   "dependencies": {
-    "@strapi/plugin-color-picker": "^4.14.0",
-    "@strapi/plugin-graphql": "^4.14.0",
-    "@strapi/plugin-i18n": "4.14.0",
+    "@strapi/plugin-color-picker": "^4.14.3",
+    "@strapi/plugin-graphql": "^4.14.3",
+    "@strapi/plugin-i18n": "4.14.3",
     "@strapi/plugin-seo": "^1.9.5",
-    "@strapi/plugin-users-permissions": "4.14.0",
-    "@strapi/strapi": "4.14.0",
+    "@strapi/plugin-users-permissions": "4.14.3",
+    "@strapi/strapi": "4.14.3",
     "pg": "^8.11.3",
     "reading-time": "^1.5.0",
     "strapi-provider-upload-supabase-strage": "^1.0.2"
