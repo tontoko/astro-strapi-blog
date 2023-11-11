@@ -1,7 +1,8 @@
 FROM node:alpine as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 RUN curl -fsSL https://bun.sh/install | sh
-ENV PATH="/root/.bun/bin:$PATH"
+ENV BUN_INSTALL "$HOME/.bun"
+ENV PATH "$BUN_INSTALL/bin:$PATH"
 ENV NODE_ENV=production
 
 WORKDIR /opt/
