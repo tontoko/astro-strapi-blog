@@ -14,7 +14,7 @@ COPY . .
 RUN bun run build
 
 # Creating final production image
-FROM oven/bun:alpine
+FROM node:alpine
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
 WORKDIR /opt/
