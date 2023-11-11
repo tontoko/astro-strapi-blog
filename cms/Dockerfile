@@ -1,5 +1,5 @@
 FROM oven/bun:alpine as build
-RUN apk update && apk add --no-cache vips-dev > /dev/null 2>&1
+RUN apk update && apk add --no-cache vips-dev build-base > /dev/null 2>&1
 ENV NODE_ENV=production
 
 WORKDIR /opt/
