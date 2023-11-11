@@ -1,8 +1,5 @@
-FROM node:alpine as build
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
-RUN curl -fsSL https://bun.sh/install | sh
-ENV BUN_INSTALL "$HOME/.bun"
-ENV PATH "$BUN_INSTALL/bin:$PATH"
+FROM oven/bun:alpine as build
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git nodejs > /dev/null 2>&1
 ENV NODE_ENV=production
 
 WORKDIR /opt/
@@ -15,7 +12,7 @@ COPY . .
 RUN bun run build
 
 # Creating final production image
-FROM node:alpine
+FROM oven/bun:alpine
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
 WORKDIR /opt/
