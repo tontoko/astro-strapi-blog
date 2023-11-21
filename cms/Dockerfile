@@ -1,11 +1,10 @@
 FROM oven/bun:alpine as build
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git nodejs > /dev/null 2>&1
+RUN apk update && apk add --no-cache vips-dev
 ENV NODE_ENV=production
 
 WORKDIR /opt/
 COPY package.json bun.lockb ./
 RUN bun install --production
-RUN cd ./node_modules/sharp && bun install
 ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
