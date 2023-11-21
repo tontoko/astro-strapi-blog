@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^7.7.1",
-    "@astrojs/image": "^0.17.3",
     "@astrojs/partytown": "^2.0.2",
     "@astrojs/prefetch": "0.4.1",
     "@astrojs/sitemap": "^3.0.3",
