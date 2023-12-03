@@ -1,0 +1,23 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import { drizzle } from 'drizzle-orm/d1';
+import { comments } from '../../db/schema';
+
+const runtime = Astro.locals.runtime;
+
+const db = drizzle(runtime.env.DB);
+const result = await db.select().from(comments).all();
+
+---
+
+<Layout title="Todo">
+  <h1>Comment一覧</h1>
+  {result.map((comment) => (
+    <div>
+      <p>{comment.id}</p>
+      <p>{comment.comment}</p>
+    </div>
+  ))}
+</Layout>

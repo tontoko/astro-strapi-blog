@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "preview-wrangler": "bun run build && wrangler pages dev ./dist",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -24,7 +25,6 @@
     "@astrojs/tailwind": "^5.0.2",
     "astro": "^3.6.4",
     "astro-robots-txt": "^1.0.0",
-    "better-sqlite3": "^9.2.0",
     "drizzle-orm": "^0.29.1",
     "graphql": "^16.8.1",
     "highlight.js": "^11.9.0",
@@ -39,7 +39,6 @@
     "@graphql-codegen/client-preset": "4.1.0",
     "@graphql-codegen/introspection": "4.0.0",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/better-sqlite3": "^7.6.8",
     "@types/gtag.js": "^0.0.18",
     "@types/marked": "^5.0.2",
     "@typescript-eslint/parser": "^6.13.1",
