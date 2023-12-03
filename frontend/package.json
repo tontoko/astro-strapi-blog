@@ -7,14 +7,15 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "preview-wrangler": "bun run build && wrangler pages dev ./dist",
+    "preview-wrangler": "bun run build && wrangler pages dev ./dist --persist",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "gen:graphql": "graphql-codegen --config codegen.ts",
     "gen:migration": "drizzle-kit generate:sqlite --schema=./src/db/schema.ts",
-    "db:migrate": "wrangler d1 migrations apply astro-strapi-blog-db"
+    "db:migrate": "wrangler d1 migrations apply astro-strapi-blog-db",
+    "local:db:migrate": "wrangler d1 migrations apply astro-strapi-blog-db --local"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^7.7.1",
@@ -39,9 +40,11 @@
     "@graphql-codegen/client-preset": "4.1.0",
     "@graphql-codegen/introspection": "4.0.0",
     "@tailwindcss/typography": "^0.5.10",
+    "@types/better-sqlite3": "^7.6.8",
     "@types/gtag.js": "^0.0.18",
     "@types/marked": "^5.0.2",
     "@typescript-eslint/parser": "^6.13.1",
+    "better-sqlite3": "^9.2.0",
     "bun-types": "^1.0.15",
     "drizzle-kit": "^0.20.6",
     "eslint": "^8.55.0",

@@ -10,7 +10,9 @@ import partytown from "@astrojs/partytown"
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    runtime: { mode: "local" },
+  }),
   site: process.env.PUBLIC_BACKEND_URL ?? "http://127.0.0.1:1337",
   image: {
     domains: ["localhost"],
