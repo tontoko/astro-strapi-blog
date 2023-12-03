@@ -1,6 +1,6 @@
 name = "astro-strapi-blog"
 main = "./dist/_worker.js"
-compatibility_date = "2023-04-15"
+compatibility_date = "2023-12-01"
 
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
