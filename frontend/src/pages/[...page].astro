@@ -53,7 +53,7 @@ const articleContents = Object.fromEntries(
         return (
           <div>
             <article class="break-words py-16">
-              <a href={`/blogs/${post.attributes?.slug}`} rel="prefetch">
+              <a href={`/blogs/${post.attributes?.slug}`}>
                 <h1>{post?.attributes?.title}</h1>
                 <div
                   class="line-clamp-3"
@@ -67,7 +67,7 @@ const articleContents = Object.fromEntries(
                     const { name, slug } = attributes ?? {}
                     return (
                       <li class="list-none m-0">
-                        <a href={`/categories/show/${slug}`} rel="prefetch">
+                        <a href={`/categories/show/${slug}`}>
                           {name}
                         </a>
                       </li>

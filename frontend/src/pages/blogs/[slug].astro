@@ -50,7 +50,7 @@ const { parsedMarkdown, toc } = await parseWithCustomRenderer({
       <div class="ml-2">
         {
           toc.map(({ level, slug, title }) => (
-            <a href={"#" + slug} rel="prefetch">
+            <a href={"#" + slug}>
               <div style={`margin-left: ${(level - 1) * 16}px;`} class="my-2.5">
                 {title}
               </div>
@@ -70,7 +70,7 @@ const { parsedMarkdown, toc } = await parseWithCustomRenderer({
             const { name, slug } = attributes ?? {}
             return (
               <li class="list-none m-0">
-                <a href={`/categories/show/${slug}`} rel="prefetch">
+                <a href={`/categories/show/${slug}`}>
                   {name}
                 </a>
               </li>

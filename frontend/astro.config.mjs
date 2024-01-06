@@ -1,14 +1,16 @@
 import { defineConfig } from "astro/config"
-import svelte from "@astrojs/svelte"
-import prefetch from "@astrojs/prefetch"
 import tailwind from "@astrojs/tailwind"
 import robotsTxt from "astro-robots-txt"
 import sitemap from "@astrojs/sitemap"
 import cloudflare from "@astrojs/cloudflare"
 import partytown from "@astrojs/partytown"
+import qwikdev from "@qwikdev/astro"
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: {
+    prefetchAll: true,
+  },
   output: "hybrid",
   adapter: cloudflare({
     runtime: { mode: "local" },
@@ -19,8 +21,7 @@ export default defineConfig({
     remotePatterns: [{ protocol: "https" }],
   },
   integrations: [
-    svelte(),
-    prefetch(),
+    qwikdev(),
     tailwind(),
     sitemap(),
     robotsTxt(),

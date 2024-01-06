@@ -78,7 +78,7 @@ const categoryItem: Category = Astro.props.categoryItem
         return (
           <div>
             <article class="break-words py-16">
-              <a href={`/blogs/${post.attributes?.slug}`} rel="prefetch">
+              <a href={`/blogs/${post.attributes?.slug}`}>
                 <h1>{post?.attributes?.title}</h1>
                 <div
                   class="line-clamp-3"
@@ -91,7 +91,7 @@ const categoryItem: Category = Astro.props.categoryItem
                   {post.attributes?.categories?.data?.map(({ attributes }) => {
                     const { name, slug } = attributes ?? {}
                     return (
-                      <a href={`/categories/show/${slug}`} rel="prefetch">
+                      <a href={`/categories/show/${slug}`}>
                         {name}
                       </a>
                     )

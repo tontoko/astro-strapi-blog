@@ -2,9 +2,6 @@
   "name": "",
   "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "dev": "astro dev",
     "preview-wrangler": "bun run build && wrangler pages dev ./dist --persist",
@@ -18,22 +15,21 @@
     "local:db:migrate": "wrangler d1 migrations apply astro-strapi-blog-db --local"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^7.7.1",
-    "@astrojs/partytown": "^2.0.2",
+    "@astrojs/cloudflare": "^8.0.2",
+    "@astrojs/partytown": "^2.0.3",
     "@astrojs/prefetch": "0.4.1",
-    "@astrojs/sitemap": "^3.0.3",
-    "@astrojs/svelte": "^4.0.4",
-    "@astrojs/tailwind": "^5.0.2",
-    "astro": "^3.6.4",
+    "@astrojs/sitemap": "^3.0.4",
+    "@astrojs/tailwind": "^5.1.0",
+    "@qwikdev/astro": "^0.3.4",
+    "astro": "^4.1.1",
     "astro-robots-txt": "^1.0.0",
-    "drizzle-orm": "^0.29.1",
+    "drizzle-orm": "^0.29.3",
     "graphql": "^16.8.1",
     "highlight.js": "^11.9.0",
-    "marked": "^11.0.0",
-    "marked-highlight": "^2.0.8",
-    "sharp": "^0.33.0",
-    "svelte": "^4.2.8",
-    "tailwindcss": "^3.3.5"
+    "marked": "^11.1.1",
+    "marked-highlight": "^2.1.0",
+    "sharp": "^0.33.1",
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
@@ -43,17 +39,17 @@
     "@types/better-sqlite3": "^7.6.8",
     "@types/gtag.js": "^0.0.18",
     "@types/marked": "^5.0.2",
-    "@typescript-eslint/parser": "^6.13.1",
-    "better-sqlite3": "^9.2.0",
-    "bun-types": "^1.0.15",
-    "drizzle-kit": "^0.20.6",
-    "eslint": "^8.55.0",
-    "eslint-plugin-astro": "^0.30.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "better-sqlite3": "^9.2.2",
+    "bun-types": "^1.0.21",
+    "drizzle-kit": "^0.20.10",
+    "eslint": "^8.56.0",
+    "eslint-plugin-astro": "^0.31.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
-    "prettier": "^3.1.0",
-    "prettier-plugin-astro": "^0.12.2",
-    "typescript": "^5.3.2",
-    "wrangler": "^3.18.0"
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.3",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.22.3"
   },
   "trustedDependencies": [
     "sharp"

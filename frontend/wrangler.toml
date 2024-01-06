@@ -5,6 +5,6 @@ compatibility_date = "2023-12-01"
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "astro-strapi-blog-db"
-database_id = "1d9ae0f9-538f-45af-9a78-9e6f0894cd00"
+database_id = "3d5ff80c-fa04-4505-9fdb-403f54161c37"
 preview_database_id = "DB"
 migrations_dir="drizzle"

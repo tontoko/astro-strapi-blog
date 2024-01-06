@@ -34,7 +34,7 @@ export const parseWithCustomRenderer = async ({
 
   renderer.link = (href, title, text) => {
     if (href?.match(import.meta.env.PUBLIC_BACKEND_URL))
-      return `<a href="${href}" title="${title}" rel="prefetch">${text}</a>\n`
+      return `<a href="${href}" title="${title}">${text}</a>\n`
     return `<a href="${href}" title="${title}" target="_blank" rel="noopener noreferrer">${text}</a>\n`
   }
   renderer.heading = (text, level) => {

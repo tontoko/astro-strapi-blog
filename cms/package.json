@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "A Strapi application",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "develop": "strapi develop",
@@ -16,21 +16,21 @@
     "util": "^0.12.5"
   },
   "dependencies": {
-    "@strapi/plugin-color-picker": "^4.15.5",
-    "@strapi/plugin-graphql": "^4.15.5",
-    "@strapi/plugin-i18n": "4.15.5",
+    "@strapi/plugin-color-picker": "^4.16.2",
+    "@strapi/plugin-graphql": "^4.16.2",
+    "@strapi/plugin-i18n": "4.16.2",
     "@strapi/plugin-seo": "^1.9.8",
-    "@strapi/plugin-users-permissions": "4.15.5",
-    "@strapi/strapi": "4.15.5",
-    "bun-types": "^1.0.15",
+    "@strapi/plugin-users-permissions": "4.16.2",
+    "@strapi/strapi": "4.16.2",
+    "bun-types": "^1.0.21",
     "pg": "^8.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1",
+    "react-router-dom": "^6.21.1",
     "reading-time": "^1.5.0",
-    "sharp": "0.32.6",
+    "sharp": "0.33.1",
     "strapi-provider-upload-supabase-strage": "^1.0.2",
-    "styled-components": "^6.1.1"
+    "styled-components": "^6.1.6"
   },
   "author": {
     "name": "A Strapi developer"

@@ -1,4 +1,4 @@
-FROM node:18-slim as build
+FROM node:20-slim as build
 RUN apt-get update -qq && apt-get install -y --no-install-recommends libvips42
 RUN npm install -g bun
 ENV NODE_ENV=production
@@ -13,7 +13,7 @@ COPY . .
 RUN bun run build
 
 # Creating final production image
-FROM node:18-slim
+FROM node:20-slim
 RUN apt update -qq && apt install -y --no-install-recommends libvips42
 RUN npm install -g bun
 ENV NODE_ENV=production
