@@ -18,7 +18,7 @@ export const CommentForm = component$<CommentFormProps>(
         }
         const abortController = new AbortController()
         cleanup(() => abortController.abort("cleanup"))
-        const res = await fetch(`/api/comments/${post_id}.json?page=${page}`, {
+        const res = await fetch(`/api/comments/${post_id}?page=${page}`, {
           signal: abortController.signal,
         })
         const data = await res.json()

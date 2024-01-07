@@ -10,7 +10,7 @@ const post_id= 1
 const protocol = Astro.url.protocol
 const host = Astro.url.host
 
-const result = await fetch(`${protocol}//${host}/api/comments/${post_id}.json?page=1`)
+const result = await fetch(`${protocol}//${host}/api/comments/${post_id}?page=1`)
 
 const initialData = await result.json() as GetCommentsType
 
