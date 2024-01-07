@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro"
-import { getDbClient } from "../../../db"
-import { comments } from "../../../db/schema"
+import { getDbClient } from "../../../../db"
+import { comments } from "../../../../db/schema"
 import { desc, eq, sql } from "drizzle-orm"
 
 export const prerender = false
