@@ -18,33 +18,37 @@ export const GET: APIRoute = async ({ url, params, locals }) => {
   if (isNaN(post_id) || isNaN(page)) {
     return new Response(null, { status: 400 })
   }
-
-  const result = await db
-    .select()
-    .from(comments)
-    .where(eq(comments.post_id, post_id))
-    .orderBy(desc(comments.id))
-    .offset((page - 1) * 10)
-    .limit(10)
-
-  const { count } = (
-    await db
-      .select({
-        count: sql<number>`count(*)`.mapWith(Number),
-      })
+  try {
+    const result = await db
+      .select()
       .from(comments)
       .where(eq(comments.post_id, post_id))
-  )[0]
+      .orderBy(desc(comments.id))
+      .offset((page - 1) * 10)
+      .limit(10)
 
-  return new Response(
-    JSON.stringify({ comments: result, count } satisfies GetCommentsType),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
+    const { count } = (
+      await db
+        .select({
+          count: sql<number>`count(*)`.mapWith(Number),
+        })
+        .from(comments)
+        .where(eq(comments.post_id, post_id))
+    )[0]
+
+    return new Response(
+      JSON.stringify({ comments: result, count } satisfies GetCommentsType),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    },
-  )
+    )
+  } catch (e) {
+    console.log(e)
+    return new Response(null, { status: 404 })
+  }
 }
 
 export const POST: APIRoute = async ({ params, locals }) => {
