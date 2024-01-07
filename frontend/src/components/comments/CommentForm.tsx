@@ -29,6 +29,7 @@ export const CommentForm = component$<CommentFormProps>(
 
     return (
       <>
+        <h1>Comment一覧</h1>
         <Resource
           value={commentsResource}
           onResolved={({ comments, count }) => {
