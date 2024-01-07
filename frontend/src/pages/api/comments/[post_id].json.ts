@@ -1,9 +1,14 @@
 import type { APIRoute } from "astro"
 import { getDbClient } from "../../../db"
 import { comments } from "../../../db/schema"
-import { desc, eq } from "drizzle-orm"
+import { desc, eq, sql } from "drizzle-orm"
 
 export const prerender = false
+
+export type GetCommentsType = {
+  comments: (typeof comments.$inferSelect)[]
+  count: number
+}
 
 export const GET: APIRoute = async ({ url, params, locals }) => {
   const db = getDbClient(locals.runtime)
@@ -20,13 +25,26 @@ export const GET: APIRoute = async ({ url, params, locals }) => {
     .where(eq(comments.post_id, post_id))
     .orderBy(desc(comments.id))
     .offset((page - 1) * 10)
+    .limit(10)
 
-  return new Response(JSON.stringify(result), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
+  const { count } = (
+    await db
+      .select({
+        count: sql<number>`count(*)`.mapWith(Number),
+      })
+      .from(comments)
+      .where(eq(comments.post_id, post_id))
+  )[0]
+
+  return new Response(
+    JSON.stringify({ comments: result, count } satisfies GetCommentsType),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
-  })
+  )
 }
 
 export const POST: APIRoute = async ({ params, locals }) => {
