@@ -21,8 +21,6 @@ export const GET: APIRoute = async ({ url, params, locals }) => {
     .orderBy(desc(comments.id))
     .offset((page - 1) * 10)
 
-  console.log(result)
-
   return new Response(JSON.stringify(result), {
     status: 200,
     headers: {
