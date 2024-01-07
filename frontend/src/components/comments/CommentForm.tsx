@@ -1,5 +1,5 @@
 import { component$, useSignal, useResource$, Resource } from "@builder.io/qwik"
-import type { GetCommentsType } from "../../pages/api/comments/[post_id]/index.json"
+import type { GetCommentsType } from "../../pages/api/comments/[post_id]"
 
 export interface CommentFormProps {
   post_id: number
