@@ -15,20 +15,20 @@
     "local:db:migrate": "wrangler d1 migrations apply astro-strapi-blog-db --local"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^8.0.2",
+    "@astrojs/cloudflare": "^8.1.0",
     "@astrojs/partytown": "^2.0.3",
     "@astrojs/prefetch": "0.4.1",
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/tailwind": "^5.1.0",
-    "@qwikdev/astro": "^0.3.4",
-    "astro": "^4.1.1",
+    "@qwikdev/astro": "^0.3.7",
+    "astro": "^4.1.2",
     "astro-robots-txt": "^1.0.0",
     "drizzle-orm": "^0.29.3",
     "graphql": "^16.8.1",
     "highlight.js": "^11.9.0",
     "marked": "^11.1.1",
     "marked-highlight": "^2.1.0",
-    "sharp": "^0.33.1",
+    "sharp": "^0.33.2",
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
@@ -39,17 +39,17 @@
     "@types/better-sqlite3": "^7.6.8",
     "@types/gtag.js": "^0.0.18",
     "@types/marked": "^5.0.2",
-    "@typescript-eslint/parser": "^6.17.0",
+    "@typescript-eslint/parser": "^6.18.1",
     "better-sqlite3": "^9.2.2",
-    "bun-types": "^1.0.21",
-    "drizzle-kit": "^0.20.10",
+    "bun-types": "^1.0.22",
+    "drizzle-kit": "^0.20.12",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.1",
     "prettier-plugin-astro": "^0.12.3",
     "typescript": "^5.3.3",
-    "wrangler": "^3.22.3"
+    "wrangler": "^3.22.4"
   },
   "trustedDependencies": [
     "sharp"

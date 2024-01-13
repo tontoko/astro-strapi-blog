@@ -16,21 +16,21 @@
     "util": "^0.12.5"
   },
   "dependencies": {
-    "@strapi/plugin-color-picker": "^4.16.2",
-    "@strapi/plugin-graphql": "^4.16.2",
-    "@strapi/plugin-i18n": "4.16.2",
+    "@strapi/plugin-color-picker": "^4.17.0",
+    "@strapi/plugin-graphql": "^4.17.0",
+    "@strapi/plugin-i18n": "4.17.0",
     "@strapi/plugin-seo": "^1.9.8",
-    "@strapi/plugin-users-permissions": "4.16.2",
-    "@strapi/strapi": "4.16.2",
-    "bun-types": "^1.0.21",
+    "@strapi/plugin-users-permissions": "4.17.0",
+    "@strapi/strapi": "4.17.0",
+    "bun-types": "^1.0.22",
     "pg": "^8.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.1",
+    "react-router-dom": "^6.21.2",
     "reading-time": "^1.5.0",
-    "sharp": "0.33.1",
+    "sharp": "0.33.2",
     "strapi-provider-upload-supabase-strage": "^1.0.2",
-    "styled-components": "^6.1.6"
+    "styled-components": "^6.1.8"
   },
   "author": {
     "name": "A Strapi developer"
