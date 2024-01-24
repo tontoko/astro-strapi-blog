@@ -42,7 +42,7 @@ export const CommentForm = component$<CommentFormProps>(
             return (
               <Fragment>
                 {comments.map((comment) => (
-                  <div>
+                  <div key={comment.id}>
                     <p>{comment.id}</p>
                     <p>{comment.comment}</p>
                   </div>

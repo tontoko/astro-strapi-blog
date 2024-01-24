@@ -29,6 +29,11 @@ module.exports = {
         // "astro/no-set-html-directive": "error",
       },
     },
+    {
+      files: ["*.tsx"],
+      plugins: ["qwik"],
+      extends: ["plugin:qwik/recommended"],
+    },
     // ...
   ],
 }
