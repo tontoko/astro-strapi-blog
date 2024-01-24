@@ -1,4 +1,10 @@
-import { component$, useSignal, useResource$, Resource } from "@builder.io/qwik"
+import {
+  component$,
+  useSignal,
+  useResource$,
+  Resource,
+  Fragment,
+} from "@builder.io/qwik"
 import type { GetCommentsType } from "../../pages/api/comments/[post_id]"
 
 export interface CommentFormProps {
@@ -28,13 +34,13 @@ export const CommentForm = component$<CommentFormProps>(
     )
 
     return (
-      <>
+      <Fragment>
         <h1>Comment一覧</h1>
         <Resource
           value={commentsResource}
           onResolved={({ comments, count }) => {
             return (
-              <>
+              <Fragment>
                 {comments.map((comment) => (
                   <div>
                     <p>{comment.id}</p>
@@ -60,13 +66,13 @@ export const CommentForm = component$<CommentFormProps>(
                 >
                   Next
                 </button>
-              </>
+              </Fragment>
             )
           }}
           onPending={() => <div>Loading...</div>}
           onRejected={(error) => <div>{error.message}</div>}
         />
-      </>
+      </Fragment>
     )
   },
 )
