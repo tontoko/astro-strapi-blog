@@ -11,6 +11,9 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },
+  experimental: {
+    clientPrerender: true,
+  },
   output: "hybrid",
   adapter: cloudflare({
     runtime: { mode: "local" },

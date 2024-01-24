@@ -15,14 +15,14 @@
     "local:db:migrate": "wrangler d1 migrations apply astro-strapi-blog-db --local"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^8.1.0",
+    "@astrojs/cloudflare": "^9.0.0",
     "@astrojs/partytown": "^2.0.4",
     "@astrojs/prefetch": "0.4.1",
     "@astrojs/sitemap": "^3.0.5",
     "@astrojs/tailwind": "^5.1.0",
     "@builder.io/qwik": "^1.4.0",
-    "@qwikdev/astro": "^0.4.4",
-    "astro": "^4.2.1",
+    "@qwikdev/astro": "^0.4.9",
+    "astro": "^4.2.4",
     "astro-robots-txt": "^1.0.0",
     "drizzle-orm": "^0.29.3",
     "graphql": "^16.8.1",
@@ -40,9 +40,9 @@
     "@types/better-sqlite3": "^7.6.8",
     "@types/gtag.js": "^0.0.18",
     "@types/marked": "^5.0.2",
-    "@typescript-eslint/parser": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.1",
     "better-sqlite3": "^9.3.0",
-    "bun-types": "^1.0.24",
+    "bun-types": "^1.0.25",
     "drizzle-kit": "^0.20.13",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.3",
@@ -50,7 +50,7 @@
     "prettier": "^3.2.4",
     "prettier-plugin-astro": "^0.13.0",
     "typescript": "^5.3.3",
-    "wrangler": "^3.23.0"
+    "wrangler": "^3.24.0"
   },
   "trustedDependencies": [
     "sharp"
