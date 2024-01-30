@@ -14,29 +14,29 @@ export interface CommentFormProps {
 
 export const CommentForm = component$<CommentFormProps>(
   ({ post_id, initialData }) => {
-    const currentPage = useSignal(1)
+    // const currentPage = useSignal(1)
 
-    const commentsResource = useResource$<GetCommentsType>(
-      async ({ track, cleanup }) => {
-        const page = track(() => currentPage.value)
-        if (typeof window === "undefined") {
-          return initialData
-        }
-        const abortController = new AbortController()
-        cleanup(() => abortController.abort("cleanup"))
-        const res = await fetch(`/api/comments/${post_id}?page=${page}`, {
-          signal: abortController.signal,
-        })
-        const data = await res.json()
+    // const commentsResource = useResource$<GetCommentsType>(
+    //   async ({ track, cleanup }) => {
+    //     const page = track(() => currentPage.value)
+    //     if (typeof window === "undefined") {
+    //       return initialData
+    //     }
+    //     const abortController = new AbortController()
+    //     cleanup(() => abortController.abort("cleanup"))
+    //     const res = await fetch(`/api/comments/${post_id}?page=${page}`, {
+    //       signal: abortController.signal,
+    //     })
+    //     const data = await res.json()
 
-        return data as GetCommentsType
-      },
-    )
+    //     return data as GetCommentsType
+    //   },
+    // )
 
     return (
       <Fragment>
         <h1>Comment一覧</h1>
-        <Resource
+        {/* <Resource
           value={commentsResource}
           onResolved={({ comments, count }) => {
             return (
@@ -71,7 +71,7 @@ export const CommentForm = component$<CommentFormProps>(
           }}
           onPending={() => <div>Loading...</div>}
           onRejected={(error) => <div>{error.message}</div>}
-        />
+        /> */}
       </Fragment>
     )
   },
