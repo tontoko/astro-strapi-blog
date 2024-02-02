@@ -3,19 +3,11 @@ export const prerender = false
 
 import Layout from '../../layouts/Layout.astro';
 import { CommentForm } from '../../components/comments/CommentForm';
-import type { GetCommentsType } from '../api/comments/[post_id]';
 
-const post_id= 1 
-
-const protocol = Astro.url.protocol
-const host = Astro.url.host
-
-const result = await fetch(`${protocol}//${host}/api/comments/${post_id}?page=1`)
-
-const initialData = await result.json() as GetCommentsType
+const origin = Astro.url.origin
 
 ---
 
 <Layout title="Todo">
-  <CommentForm post_id={1} initialData={initialData} />
+  <CommentForm post_id={1} origin={origin} />
 </Layout>
