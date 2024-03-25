@@ -28,7 +28,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "5.2.0",
     "reading-time": "^1.5.0",
-    "sharp": "0.33.2",
+    "sharp": "0.33.3",
     "strapi-provider-upload-supabase-strage": "^1.0.2",
     "styled-components": "^6.1.8"
   },
