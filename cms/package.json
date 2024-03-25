@@ -18,7 +18,7 @@
   "dependencies": {
     "@strapi/plugin-color-picker": "^4.20.2",
     "@strapi/plugin-graphql": "^4.20.2",
-    "@strapi/plugin-i18n": "4.20.2",
+    "@strapi/plugin-i18n": "4.21.0",
     "@strapi/plugin-seo": "^1.9.8",
     "@strapi/plugin-users-permissions": "4.20.2",
     "@strapi/strapi": "4.20.2",
